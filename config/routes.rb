@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :categories
   resources :sports
   get 'promotions/view'
 
