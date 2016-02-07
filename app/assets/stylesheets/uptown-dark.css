@@ -1,0 +1,808 @@
+@import url(https://fonts.googleapis.com/css?family=Quantico);
+/*!
+ * Start Bootstrap - SB Admin Bootstrap Admin Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/* Global Styles */
+body {
+  margin-top: 15px;
+  background-color: #222;
+}
+@media (min-width: 768px) {
+  body {
+    margin-top: 15px;
+  }
+}
+#wrapper {
+  padding-left: 0;
+}
+#page-wrapper {
+  width: 100%;
+  padding: 0;
+  background-color: #fff;
+}
+.huge {
+  font-size: 50px;
+  line-height: normal;
+}
+@media (min-width: 768px) {
+  #wrapper {
+    padding-left: 225px;
+  }
+  #page-wrapper {
+    padding: 10px;
+  }
+}
+/* Top Navigation */
+.top-nav {
+  padding: 0 15px;
+}
+.top-nav > li {
+  display: inline-block;
+  float: left;
+}
+.top-nav > li > a {
+  color: white;
+}
+.top-nav > li > a:hover,
+.top-nav > li > a:focus,
+.top-nav > .open > a,
+.top-nav > .open > a:hover,
+.top-nav > .open > a:focus {
+  color: #fff;
+  background-color: #000;
+}
+.top-nav > .open > .dropdown-menu {
+  float: left;
+  position: absolute;
+  margin-top: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.top-nav > .open > .dropdown-menu > li > a {
+  white-space: normal;
+}
+ul.message-dropdown {
+  padding: 0;
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+li.message-preview {
+  width: 275px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+li.message-preview > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+li.message-footer {
+  margin: 5px 0;
+}
+ul.alert-dropdown {
+  width: 200px;
+}
+/* Side Navigation */
+@media (min-width: 768px) {
+  .side-nav {
+    position: fixed;
+    top: 65px;
+    left: 225px;
+    width: 225px;
+    margin-left: -225px;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    background-color: #222;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+  }
+  .side-nav > li > a {
+    width: 225px;
+  }
+  .side-nav li a:hover,
+  .side-nav li a:focus {
+    outline: none;
+    background-color: #000;
+  }
+}
+.side-nav > li > ul {
+  padding: 0;
+}
+.side-nav > li > ul > li > a {
+  display: block;
+  padding: 10px 15px 10px 38px;
+  text-decoration: none;
+  color: #999;
+}
+.side-nav > li > ul > li > a:hover {
+  color: #fff;
+}
+/* Flot Chart Containers */
+.flot-chart {
+  display: block;
+  height: 400px;
+}
+.flot-chart-content {
+  width: 100%;
+  height: 100%;
+}
+/* Custom Colored Panels */
+.huge {
+  font-size: 40px;
+}
+.panel-green {
+  border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+  border-color: #5cb85c;
+  color: #fff;
+  background-color: #5cb85c;
+}
+.panel-green > a {
+  color: #5cb85c;
+}
+.panel-green > a:hover {
+  color: #3d8b3d;
+}
+.panel-red {
+  border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+  border-color: #d9534f;
+  color: #fff;
+  background-color: #d9534f;
+}
+.panel-red > a {
+  color: #d9534f;
+}
+.panel-red > a:hover {
+  color: #b52b27;
+}
+.panel-yellow {
+  border-color: #f0ad4e;
+}
+.panel-yellow > .panel-heading {
+  border-color: #f0ad4e;
+  color: #fff;
+  background-color: #f0ad4e;
+}
+.panel-yellow > a {
+  color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+  color: #df8a13;
+}
+/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/* Global Styles */
+html,
+body {
+  height: 100%;
+}
+body {
+  padding-top: 50px;
+  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+.img-portfolio {
+  margin-bottom: 30px;
+}
+.img-hover:hover {
+  opacity: 0.8;
+}
+/* Home Page Carousel */
+header.carousel {
+  height: 50%;
+}
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+  height: 100%;
+}
+header.carousel .fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+/* 404 Page Styles */
+.error-404 {
+  font-size: 100px;
+}
+/* Pricing Page Styles */
+.price {
+  display: block;
+  font-size: 50px;
+  line-height: 50px;
+}
+.price sup {
+  top: -20px;
+  left: 2px;
+  font-size: 20px;
+}
+.period {
+  display: block;
+  font-style: italic;
+}
+/* Footer Styles */
+footer {
+  margin: 50px 0;
+}
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .customer-img,
+  .img-related {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .img-portfolio {
+    margin-bottom: 15px;
+  }
+  header.carousel .carousel {
+    height: 70%;
+  }
+}
+/*-----UPTOWN SPORTS DREAM TEMPLATE----*/
+body {
+  color: #999999;
+  background-color: #222222;
+}
+p {
+  color: #eeeeee;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Quantico';
+}
+.footer {
+  background-color: #333333;
+  display: block;
+  padding: 30px;
+  margin: 0;
+}
+.h1,
+h1,
+.h2,
+h2 {
+  color: #f8f8f8;
+}
+a,
+.btn-link {
+  color: #ff5300;
+}
+a:hover,
+.btn-link:focus,
+.btn-link:hover {
+  color: #e94c00;
+}
+.fixed {
+  position: fixed;
+}
+.panel {
+  border-radius: 0;
+}
+.page-header {
+  padding-bottom: 9px;
+  margin: 30px 0 20px;
+  border-bottom: none;
+}
+.panel-heading,
+.panel-default > .panel-heading {
+  background-color: #222222;
+  color: #999999;
+}
+.well,
+.panel-body {
+  background-color: #333333;
+  color: #999999;
+}
+.jumbotron {
+  background-color: #555555;
+  color: #999999;
+}
+#page-wrapper {
+  background-color: #222222;
+}
+#page-wrapper .container {
+  width: 100%;
+}
+a.navbar-brand {
+  height: 100%;
+  font-family: Quantico;
+  color: #ff5300 !important;
+  text-transform: uppercase;
+  font-size: 27px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  a.navbar-brand {
+    font-size: 17px;
+  }
+}
+.navbar-brand > img {
+  max-width: 220px;
+}
+.navbar .container {
+  width: 100%;
+}
+.navbar-default {
+  background: #010d19;
+}
+.navbar-default.sidebar {
+  background: #f1f1f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #dbdbdb;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background: #f1f1f1;
+}
+.sidebar ul li {
+  border-bottom: 1px solid #e7e7e7;
+  display: block;
+  width: 100%;
+}
+#leftMenu .accordion-group {
+  margin-bottom: 0px;
+  border: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+#leftMenu .accordion-heading {
+  border-bottom: 1px solid #383838;
+  list-style-type: none;
+}
+#leftMenu .accordion-heading a {
+  color: #eeeeee;
+  /* text color */
+  /* drop shadow */
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  background: black;
+  padding: 15px;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+}
+#leftMenu .accordion-heading a:hover {
+  color: #FFFFFF;
+  background: #ff5300;
+}
+#leftMenu .accordion-heading .active {
+  width: 182px;
+  height: 34px;
+  border: 1px solid #5b5b5b;
+  /* inner stroke */
+  background-color: #353535;
+}
+.accordion-inner {
+  color: white;
+}
+.accordion-inner li {
+  list-style: none;
+}
+.accordion-inner li a {
+  display: block;
+  padding: 10px 15px;
+  color: #F8F8F8;
+  background: #585757;
+  border-bottom: solid 1px #333;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+}
+.accordion-inner li a:hover,
+.accordion-inner li a:focus {
+  text-decoration: none;
+  background-color: #797979;
+}
+.accordion-inner ul {
+  padding: 0;
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  background-color: #333333;
+}
+.navbar-inverse .navbar-nav > li > a {
+  font-family: 'Quantico';
+  text-transform: uppercase;
+  color: #999999;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+  background-color: #ff5300;
+}
+.navbar-nav > li.active > a {
+  background-color: #ff5300 !important;
+  color: white!important;
+}
+.navbar-nav > li.sports > a {
+  background-color: #ffa200 !important;
+  color: white!important;
+}
+.navbar-nav > li.casino > a {
+  background-color: #084dbb !important;
+  color: white!important;
+}
+.navbar-nav > li.horses > a {
+  background-color: #00bd7a !important;
+  color: white!important;
+}
+.navbar-right a {
+  float: left;
+  display: inline-block;
+  margin: 12px 10px 12px 0;
+}
+.navbar-right {
+  margin: 0;
+}
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: inherit;
+}
+.top-nav > li > a {
+  background-color: transparent;
+  color: #f8f8f8;
+}
+.top-nav > li > a:hover,
+.top-nav > li > a:focus,
+.top-nav > .open > a,
+.top-nav > .open > a:hover,
+.top-nav > .open > a:focus {
+  background-color: transparent;
+}
+.top-nav > .open > .dropdown-menu > li > a {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+}
+.btn {
+  border-radius: 0;
+  border: 0;
+}
+.list-group-item:first-child {
+  border-radius: 0;
+}
+.btn-primary {
+  background-color: #ff5300;
+}
+.btn-primary:hover {
+  background-color: #e94c00;
+}
+.btn-success {
+  background-color: #00bd7a;
+}
+.btn-success:hover {
+  background-color: #55de79;
+}
+.btn-warning {
+  background-color: #ffa200;
+}
+.btn-warning:hover {
+  background-color: #e99400;
+}
+.btn-info {
+  background-color: #084dbb;
+}
+.btn-info:hover {
+  background-color: #1670ff;
+}
+.btn-danger {
+  background-color: #d53828;
+}
+.btn-danger:hover {
+  background-color: #d53828;
+}
+.btn-link {
+  color: #ff5300;
+}
+.btn-link:hover,
+.btn-link:focus {
+  text-decoration: none;
+}
+.alert {
+  color: white;
+  border-radius: 0;
+  border: none;
+}
+.alert-success {
+  background-color: #00bd7a;
+}
+.alert-info {
+  background: #084dbb;
+}
+.alert-warning {
+  background-color: #ffa200;
+}
+.alert-danger {
+  background-color: #d53828;
+}
+.progress-bar {
+  background-color: #084dbb;
+}
+.progress-bar-success {
+  background-color: #00bd7a;
+}
+.progress-bar-warning {
+  background-color: #ffa200;
+}
+.progress-bar-danger {
+  background-color: #d53828;
+}
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+  background-color: #222222;
+  border-color: #333333;
+  color: #eeeeee;
+}
+.list-group-item,
+.list-group-item:focus,
+.list-group-item:hover {
+  background-color: #f8f8f8;
+}
+.list-group-item-text {
+  color: #222222;
+}
+.market-headers {
+  width: 100%;
+}
+.market-headers ul {
+  display: inline-block;
+}
+.market-headers li {
+  display: inline-block;
+  list-style: none;
+}
+.event-shortnames {
+  display: inline-block;
+  padding: 0;
+}
+.gameline-grid li {
+  list-style: none;
+}
+.gamelie-section {
+  background: black;
+  padding: 10px;
+  margin: 5px 0;
+  border-bottom: solid 2px;
+  border-color: #D2D5D2;
+}
+.lines-show,
+.lines-heading li {
+  display: inline-block;
+  text-align: center;
+}
+.lines-header {
+  text-align: center;
+}
+.lines-show button {
+  width: 100%;
+  padding: 4px;
+  background-color: #6E7B6E;
+}
+.gameline-grid ul {
+  margin: 0;
+}
+.event-shortnames ul {
+  padding: 0;
+}
+.teams-acro li {
+  background-color: #444;
+}
+.teams-acro h4 {
+  padding: 0;
+  margin: 0;
+  color: #D8D8D8;
+}
+.lines-show {
+  margin: 0;
+  padding: 0;
+}
+.lines-show .btn:focus,
+.lines-show .btn:hover {
+  color: #D8D8D8;
+  text-decoration: none;
+  background: #689268;
+  outline: none;
+}
+.lines-show li {
+  background: #D2D5D2;
+  padding: 3px;
+}
+.teams-acro li,
+.lines-show li {
+  padding: 0;
+  border: solid 2px;
+  border-color: #000;
+  text-align: center;
+  color: #D8D8D8;
+  height: 30px;
+}
+.gameline-info h3 {
+  font-size: 21px;
+  padding: 0;
+  margin: 8px 0;
+  color: #D2D5D2;
+  font-weight: bold;
+}
+.lines-heading h4 {
+  padding: 0;
+  margin: 0;
+}
+ul.teams-acro li {
+  padding: 4px;
+}
+.lines-footer {
+  padding: 0;
+  margin: 0;
+}
+.lines-footer ul {
+  padding: 0;
+  margin: 0;
+}
+.lines-footer li {
+  list-style: none;
+  display: inline-block;
+  font-family: 'Quantico';
+  text-transform: uppercase;
+  font-size: 19px;
+  margin-right: 15px;
+}
+.event-notes {
+  padding: 0;
+  margin: 5px 0 0 0;
+}
+.event-notes p {
+  color: #A8A8A8;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+.gameline-info {
+  padding: 0;
+}
+a.game-view-cta {
+  margin: 20px 0;
+  padding: 20px 10px;
+  width: 100%;
+}
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+  }
+  #sidebar.affix {
+    position: fixed;
+    top: 65px;
+    width: auto;
+    margin-right: 40px;
+  }
+}
+@media (max-width: 1200px) {
+  #sidebar.affix {
+    position: relative;
+  }
+}
+.affix,
+.affix-top {
+  position: static;
+}
+/*-------------
+    BETSLIP
+--------------*/
+button.betslip-collapse {
+  background-color: transparent;
+  border: none;
+}
+button.remove-selected {
+  background-color: transparent;
+  border: none;
+}
+.betslip-title,
+.picks-bubble {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.betslip-title {
+  margin: 0;
+  padding: 0;
+}
+.betslip-mainheader {
+  background-color: #444;
+  padding: 10px;
+}
+span.picks-bubble {
+  background: orange;
+  border-radius: 100%;
+  padding: 1% 7%;
+}
+.event-bet {
+  padding: 0;
+  background: #FFFFFF;
+  color: black;
+  margin-bottom: 5px;
+}
+.event-header {
+  padding: 10px;
+}
+.event-header h2 {
+  color: #222;
+  margin: 5px 0;
+  font-size: 15px;
+  padding: 0;
+}
+.event-body,
+.event-body p {
+  color: black;
+}
+p.competitors {
+  margin: 0;
+  padding: 0;
+}
+.event-type {
+  padding: 0;
+  color: #969696;
+}
+.event-footer {
+  padding: 0;
+  margin: 0;
+}
+.event-footer figure {
+  padding: 15px;
+}
+.event-remove {
+  border: none;
+  background-color: transparent;
+  color: #FF5300;
+  font-size: 19px;
+  margin: 0;
+  padding: 0;
+}
+p.league-time {
+  padding: 0;
+  color: #636363;
+}
+.betslip-footer {
+  margin: 0;
+  padding: 10px;
+  background: #444444;
+}
+.footer-header h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+.footer-header {
+  padding: 0;
+}
+.selected-list {
+  padding: 0;
+  margin: 10px 0;
+}
+.selected-list dd {
+  text-align: right;
+}

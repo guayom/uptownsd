@@ -1,0 +1,25 @@
+<%= form_for(@game_line) do |f| %>
+  <% if @game_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game_line.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game_line.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sport_id %><br>
+    <%= f.number_field :sport_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

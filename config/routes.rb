@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   
-  resources :games
+  resources :slides
+  resources :game_lines
   resources :categories
   resources :sports
   
