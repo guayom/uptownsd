@@ -1,0 +1,31 @@
+%aside#bet-slip.build-bet-view
+  %header.betslip-mainheader.col-lg-12
+    %h2.col-lg-6.betslip-title{:role => "heading"}
+      %span.betslip-title Login
+  %section.event-bet.col-lg-12
+    %header.col-lg-12.event-header
+      %h2{:role => "heading"}
+        %span.event-team Login to start betting
+    .event-body.col-lg-12
+      = form_tag session_path(:user) do
+        .form-group
+          %label.control-label{for: "textinput"} Email
+          .control.input-md
+            = text_field_tag 'user[email]'
+        .form-group
+          %label.control-label{for: "textinput"} Password
+          .control.input-md
+            = password_field_tag 'user[password]'
+        = check_box_tag 'user[remember_me]'
+        = label_tag 'user[remember_me]', 'Remember me'
+        %br
+        %button.btn.btn-primary Sign in
+        %br
+        = link_to "Forgot your password?", new_password_path(:user)
+        %br
+    %hr
+    %header.col-lg-12.event-header
+      %h2{:role => "heading"}
+        %span.event-team Don't have an account yet?
+        %br
+        =link_to 'Create an account', '/users/sign_up'

@@ -10,6 +10,7 @@ class SportsController < ApplicationController
   # GET /sports/1
   # GET /sports/1.json
   def show
+    @game_lines = GameLine.sport(params[:id])
   end
 
   # GET /sports/new

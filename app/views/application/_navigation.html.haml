@@ -1,0 +1,36 @@
+/ Navigation
+%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+  / Brand and toggle get grouped for better mobile display
+  .navbar-header
+    %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => "/"} Uptown Sports Dream
+  / Top Menu Items
+  %ul.nav.navbar-right
+    -if user_signed_in?
+      %a.btn.btn-danger{:href => destroy_user_session_path, :method => :delete}
+        %span.glyphicon.glyphicon-ok-sign
+        Log Out
+    -else
+      %a.btn.btn-success{:href => new_user_registration_path, :method => :delete}
+        %span.glyphicon.glyphicon-ok-sign
+        Join Now
+      %a.btn.btn-default{:href => new_user_session_path}
+        %span.glyphicon.glyphicon-user
+        Login
+  / Sidebar Menu Items - These collapse to the responsive navigation menu on small screens
+  .collapse.navbar-collapse.navbar-ex1-collapse
+    %ul.nav.navbar-nav.side-nav
+      #leftMenu.accordion
+        .accordion-group
+          .accordion-heading
+            = link_to 'Home', '/'
+        - @sports = Sport.all
+        - @sports.each_with_index do |sport ,i|
+          .accordion-group
+            .accordion-heading
+              = link_to sport.title, sport
+  / /.navbar-collapse

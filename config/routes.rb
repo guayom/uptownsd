@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
 
-  
+  get '/game_lines/:id', to: 'game_lines#show'
+
+  resources :teams
+  resources :leagues
   resources :slides
   resources :game_lines
   resources :categories
   resources :sports
-  
-  get 'promotions/view'
 
   #devise_for :admins
   devise_for :admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users
-  #get 'static_pages/home'
 
+  get '/promotions/:id', to: 'promotions#view'
   get 'static_pages/about'
-
   get 'static_pages/help'
-
   root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.

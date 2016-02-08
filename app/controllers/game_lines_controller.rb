@@ -1,5 +1,6 @@
 class GameLinesController < ApplicationController
-  before_action :set_game_line, only: [:show, :edit, :update, :destroy]
+  #quité el show de la acción
+  before_action :set_game_line, only: [ :edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -10,6 +11,7 @@ class GameLinesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @game_line = GameLine.find(params[:id])
   end
 
   # GET /games/new

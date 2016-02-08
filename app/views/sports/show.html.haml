@@ -1,0 +1,5 @@
+=image_tag @sport.image.url
+%h1="#{@sport.title} Game Lines"
+=render partial: "game_lines/game_line", collection: @game_lines
+
+=link_to 'View all sports', sports_path
