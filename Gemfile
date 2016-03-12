@@ -37,6 +37,8 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 gem "haml"
 
+gem 'faker', '~> 1.6', '>= 1.6.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

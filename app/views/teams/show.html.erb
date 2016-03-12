@@ -10,5 +10,10 @@
   <%= @team.sport_id %>
 </p>
 
+<p>
+  <strong>Logo:</strong>
+  <%= image_tag @team.logo.url(:thumb) if @team.logo? %>
+</p>
+
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
