@@ -10,11 +10,11 @@
     %a.navbar-brand{:href => "/"} Uptown Sports Dream
   / Top Menu Items
   %ul.nav.navbar-right.hidden-xs
-    -if user_signed_in?
-      %a.btn.btn-danger{:href => destroy_user_session_path, :method => :delete}
+    - if user_signed_in?
+      = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
         %span.glyphicon.glyphicon-ok-sign
         Log Out
-    -else
+    - else
       %a.btn.btn-success{:href => new_user_registration_path, :method => :delete}
         %span.glyphicon.glyphicon-ok-sign
         Join Now
