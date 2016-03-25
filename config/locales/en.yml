@@ -24,3 +24,11 @@ en:
     label:
       user:
         password_confirmation: 'Confirm password'
+
+  admin:
+    actions:
+      make_active:
+        menu: 'Make active'
+      withdraw:
+        menu: 'Hide'
+

@@ -1,0 +1,12 @@
+= link_to root_path(anchor: 'promotions') do
+  &larr; Back to all promotions
+
+%h2.page-header
+  = @promotion.title
+
+%p
+  = @promotion.excerpt
+
+%hr
+
+= @promotion.description.html_safe

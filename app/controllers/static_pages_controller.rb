@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
-  	@promotions = Promotion.last(3).reverse
+  	@promotions = Promotion.only_active
+
   	@slides = Slide.last(3).reverse
   	@game_lines = GameLine.last(6).reverse
   end

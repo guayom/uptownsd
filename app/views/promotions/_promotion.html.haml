@@ -1,0 +1,11 @@
+.col-md-4.promotion
+  .panel.panel-yellow
+    .panel-heading
+      %h4
+        %i.fa.fa-fw.fa-check
+        = promotion.title
+    .panel-body
+      %p
+        = promotion.excerpt
+
+      = link_to 'Learn More', promotion, class: 'btn btn-lg btn-warning'

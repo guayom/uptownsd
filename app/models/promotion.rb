@@ -7,4 +7,7 @@ class Promotion < ActiveRecord::Base
   	:path => ":rails_root/public/system/:class/:style/:basename.:extension"
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  default_scope -> { order(updated_at: :desc) }
+
+  scope :only_active, -> { where(active: true) }
 end

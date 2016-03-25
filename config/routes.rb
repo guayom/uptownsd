@@ -8,14 +8,13 @@ Rails.application.routes.draw do
   resources :game_lines
   resources :categories
   resources :sports
+  resources :promotions, only: [:show]
 
-  #devise_for :admins
   devise_for :admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users
 
-  get '/promotions/:id', to: 'promotions#view'
   get 'static_pages/about'
   get 'static_pages/help'
   root 'static_pages#home'
