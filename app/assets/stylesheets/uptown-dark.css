@@ -755,6 +755,9 @@ span.picks-bubble {
   font-size: 15px;
   padding: 0;
 }
+.event-body {
+  padding: 10px;
+}
 .event-body,
 .event-body p {
   color: black;
