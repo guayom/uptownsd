@@ -19,10 +19,10 @@ RailsAdmin.config do |config|
     show_in_app
 
     member :make_active do
-      only ['Promotion']
       link_icon 'icon-volume-up'
       visible do
-        !bindings[:object].active
+        [Promotion].include?(bindings[:abstract_model].model) &&
+          !bindings[:object].try(:active)
       end
       controller do
         Proc.new do
@@ -35,11 +35,11 @@ RailsAdmin.config do |config|
       end
     end
 
-    member :withdraw do
-      only ['Promotion']
+    member :make_inactive do
       link_icon 'icon-volume-off'
       visible do
-        bindings[:object].active
+        [Promotion].include?(bindings[:abstract_model].model) &&
+          bindings[:object].try(:active)
       end
       controller do
         Proc.new do

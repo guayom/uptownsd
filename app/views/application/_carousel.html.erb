@@ -11,12 +11,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <% @slides.each_with_index do |slide, i| %>
-          <% if i == 0 %>
-          <div class="item active">
-          <% else %>
-          <div class="item">
-          <% end %>
-          
+          <div class="item <%= 'active' if 0 == i %>">
             <img src="<%= slide.image.url(:full) %>">
             <div class="carousel-caption">
                <h2><%= slide.title %></h2>
