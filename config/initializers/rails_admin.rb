@@ -66,13 +66,34 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model GameLine do
-    list do
-      field :active
-      field :sport
-      field :league
-      field :team1
-      field :team2
-    end
-  end
+  # config.model League do
+  #   list do
+  #     field :sport
+  #     field :name
+  #     field :abbreviation
+  #     field :updated_at
+  #   end
+  #
+  #   edit do
+  #     field :sport do
+  #       inline_add false
+  #       inline_edit false
+  #     end
+  #     field :name do
+  #     end
+  #     field :abbreviation do
+  #     end
+  #   end
+  # end
+
+  # config.model GameLine do
+  #   list do
+  #     field :active
+  #     field :sport
+  #     field :league
+  #     field :team1
+  #     field :team2
+  #     field :updated_at
+  #   end
+  # end
 end

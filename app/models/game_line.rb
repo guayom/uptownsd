@@ -1,6 +1,6 @@
 class GameLine < ActiveRecord::Base
+	belongs_to :sport, inverse_of: :game_lines
 
-	belongs_to :sport
 	belongs_to :league
 
 	belongs_to :team_1, :class_name => "Team"
@@ -14,6 +14,17 @@ class GameLine < ActiveRecord::Base
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   scope :only_active, -> { where(active: true) }
+
+  rails_admin do
+    list do
+      field :active
+      field :sport
+      field :league
+      field :team1
+      field :team2
+      field :updated_at
+    end
+  end
 
 	def title
 		unless self.id.nil?

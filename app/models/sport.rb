@@ -1,5 +1,6 @@
 class Sport < ActiveRecord::Base
   has_many :game_lines
+
   has_many :leagues
   has_many :teams
 
