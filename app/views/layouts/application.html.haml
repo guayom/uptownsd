@@ -1,44 +1,46 @@
 !!!
 %html
   %head
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "", :name => "description"}/
-    %meta{:content => "", :name => "author"}/
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
+    %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
+    %meta{content: '', name: 'description'}
+    %meta{content: '', name: 'author'}
     %title Uptown Sports Dream
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    -#= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', media: 'all'
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
     = csrf_meta_tags
-    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-    / WARNING: Respond.js doesn't work if you view the page via file://
-    /[if lt IE 9]
-    / <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    / <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
   %body
     #wrapper
-      = render ('application/navigation')
+      = render 'application/navigation'
+
       #page-wrapper
         .container-fluid
-          .col-lg-9.col-sm-12
-            .row
-              .col-xs-12
-                - if notice
-                  .alert.alert-success{:role => "alert"}= notice
-                - if alert
-                  .alert.alert-danger{:role => "alert"}= alert
-              = yield
-              = render ('application/footer')
-          = render ('application/sidepanel')
-    / Script to Activate the Carousel
-    :javascript
-      $('.carousel').carousel({
-              interval: 5000 //changes the speed
-          })
-          $('#sidebar').affix({
-            offset: {
-              top: $('header').height()
-            }
-        });
--#/ gx@3^LaB#gleuSl
+          .col-lg-9
+            - if notice
+              .alert.alert-success{role: 'alert'}
+                = button_tag class: 'close', data: { dismiss: 'alert' },
+                             'aria-label' => 'Close' do
+                  %span{'aria-hidden': 'true'}
+                    &times;
+                = notice
+
+            - if alert
+              .alert.alert-danger{role: 'alert'}
+                = button_tag class: 'close', data: { dismiss: 'alert' },
+                             'aria-label' => 'Close' do
+                  %span{'aria-hidden': 'true'}
+                    &times;
+                = alert
+
+            = yield
+
+            = render 'application/footer'
+
+          .col-lg-3
+            = render 'application/sidepanel'

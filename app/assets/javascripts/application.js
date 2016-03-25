@@ -15,3 +15,15 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('.carousel').carousel({
+    interval: 5000
+  });
+
+  $('#sidebar').affix({
+    offset: {
+      top: $('header').height()
+    }
+  });
+});
