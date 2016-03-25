@@ -237,6 +237,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   paperclip!
   pg
   quiet_assets
