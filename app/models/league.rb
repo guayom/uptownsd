@@ -1,7 +1,7 @@
 class League < ActiveRecord::Base
 	belongs_to :sport
-  validates_presence_of :sport
 
+  validates_presence_of :sport
   validates_presence_of :name
 
   has_many :game_lines

@@ -1,18 +1,23 @@
 class GameLine < ActiveRecord::Base
-	belongs_to :sport, inverse_of: :game_lines
+  belongs_to :sport
+  validates_presence_of :sport
 
-	belongs_to :league
+  belongs_to :league
 
-	belongs_to :team_1, :class_name => "Team"
-	belongs_to :team_2, :class_name => "Team"
+  belongs_to :team1, class_name: 'Team'
+  validates_presence_of :team1
 
-	has_attached_file :image, 
-	styles: { medium: "700x450>", thumb: "272x174>" }, 
-	default_url: "/images/:style/missing.png",
-	:url => "/system/:class/:style/:basename.:extension",
-  	:path => ":rails_root/public/system/:class/:style/:basename.:extension"
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  belongs_to :team2, class_name: 'Team'
+  validates_presence_of :team2
 
+  has_attached_file :image,
+                    styles: { medium: '700x450>', thumb: '272x174>' },
+                    default_url: '/images/:style/missing.png',
+                    url: '/system/:class/:style/:basename.:extension',
+                    path: ':rails_root/public/system/:class/:style/:basename.:extension'
+  validates_attachment_content_type :image, content_type: /\Aimage/
+
+  scope :in_sport, -> (sport) { where(sport: sport) }
   scope :only_active, -> { where(active: true) }
 
   rails_admin do
@@ -24,20 +29,35 @@ class GameLine < ActiveRecord::Base
       field :team2
       field :updated_at
     end
+
+    edit do
+      field :sport do
+        inline_add false
+        inline_edit false
+      end
+      field :league do
+        inline_add false
+        inline_edit false
+      end
+      field :team1
+      field :team2
+      field :date
+      field :time
+      field :limit
+      field :image
+      field :active
+    end
   end
 
-	def title
-		unless self.id.nil?
-			"#{self.team_1.name} vs. #{self.team_2.name}"
-		end
-	end
+  def title
+    unless self.id.nil?
+      "#{self.team1.name} vs. #{self.team2.name}"
+    end
+  end
 
-	def formatted_date
-		@date = self.date.strftime("%A, %b %d")
-		@time = self.time.strftime("%H:%M%P")
-		return "#{@date} - #{@time}"
-	end
-
-	scope :sport, lambda { |sport| where(:sport_id => sport) }
-
+  def formatted_date
+    @date = self.date.strftime('%A, %b %d')
+    @time = self.time.strftime('%H:%M%P')
+    return "#{@date} - #{@time}"
+  end
 end
