@@ -21,7 +21,7 @@ RailsAdmin.config do |config|
     member :make_active do
       link_icon 'icon-volume-up'
       visible do
-        [Promotion].include?(bindings[:abstract_model].model) &&
+        [Promotion, GameLine].include?(bindings[:abstract_model].model) &&
           !bindings[:object].try(:active)
       end
       controller do
@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
     member :make_inactive do
       link_icon 'icon-volume-off'
       visible do
-        [Promotion].include?(bindings[:abstract_model].model) &&
+        [Promotion, GameLine].include?(bindings[:abstract_model].model) &&
           bindings[:object].try(:active)
       end
       controller do
@@ -63,6 +63,16 @@ RailsAdmin.config do |config|
 
     edit do
       configure :description, :froala
+    end
+  end
+
+  config.model GameLine do
+    list do
+      field :active
+      field :sport
+      field :league
+      field :team1
+      field :team2
     end
   end
 end

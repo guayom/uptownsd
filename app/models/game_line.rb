@@ -13,6 +13,8 @@ class GameLine < ActiveRecord::Base
   	:path => ":rails_root/public/system/:class/:style/:basename.:extension"
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  scope :only_active, -> { where(active: true) }
+
 	def title
 		unless self.id.nil?
 			"#{self.team_1.name} vs. #{self.team_2.name}"

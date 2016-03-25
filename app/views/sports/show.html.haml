@@ -1,5 +1,8 @@
-=image_tag @sport.image.url
-%h1="#{@sport.title} Game Lines"
-=render partial: "game_lines/game_line", collection: @game_lines
+= image_tag @sport.image.url, class: 'img-responsive'
 
-=link_to 'View all sports', sports_path
+%h1
+  = "#{@sport.title} Game Lines"
+
+= render @sport.game_lines.only_active
+
+= link_to 'View all sports', sports_path
