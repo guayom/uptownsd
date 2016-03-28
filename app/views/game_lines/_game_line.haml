@@ -17,7 +17,7 @@
             %span.odds
               = game_line.team1_odds
           %td
-            %a.btn.btn-sm.btn-primary Bet on this team
+            = link_to_add_bet(game_line, game_line.team1)
         %tr
           %td
             %h3.lines-team{role: 'heading'}
@@ -26,6 +26,6 @@
             %span.odds
               = game_line.team2_odds
           %td
-            %a.btn.btn-sm.btn-primary Bet on this team
+            = link_to_add_bet(game_line, game_line.team2)
   .div
     = link_to game_line.sport.title, game_line.sport, {class:  'btn btn-sm'}

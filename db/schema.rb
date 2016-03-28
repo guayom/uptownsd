@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328090803) do
+ActiveRecord::Schema.define(version: 20160328111106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20160328090803) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "bets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "game_line_id"
+    t.integer  "team_id"
+    t.decimal  "risk"
+    t.integer  "status",       default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "bets", ["game_line_id"], name: "index_bets_on_game_line_id", using: :btree
+  add_index "bets", ["team_id"], name: "index_bets_on_team_id", using: :btree
+  add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -132,4 +146,7 @@ ActiveRecord::Schema.define(version: 20160328090803) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bets", "game_lines"
+  add_foreign_key "bets", "teams"
+  add_foreign_key "bets", "users"
 end

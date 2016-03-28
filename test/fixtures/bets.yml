@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  game_line_id: 
+  team_id: 
+  risk: 9.99
+
+two:
+  user_id: 
+  game_line_id: 
+  team_id: 
+  risk: 9.99

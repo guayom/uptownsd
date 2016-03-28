@@ -1,2 +1,5 @@
 #sidebar
   = render 'application/login_sb' unless user_signed_in?
+
+  #bets
+    = render current_user.draft_bets
