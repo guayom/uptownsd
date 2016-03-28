@@ -21,11 +21,18 @@ class GameLine < ActiveRecord::Base
   scope :only_active, -> { where(active: true) }
 
   rails_admin do
+    configure :game_info do
+      visible false
+    end
+
     list do
-      field :active
-      field :sport
-      field :league
+      field :active do
+        column_width 60
+      end
+      field :game_info
       field :team1
+      field :team1_odds
+      field :team2_odds
       field :team2
       field :updated_at
     end
@@ -40,6 +47,8 @@ class GameLine < ActiveRecord::Base
         inline_edit false
       end
       field :team1
+      field :team1_odds
+      field :team2_odds
       field :team2
       field :date
       field :time
@@ -47,6 +56,10 @@ class GameLine < ActiveRecord::Base
       field :image
       field :active
     end
+  end
+
+  def game_info
+    "#{sport.title},<br> #{league.name}".html_safe
   end
 
   def title
