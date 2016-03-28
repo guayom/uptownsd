@@ -5,13 +5,13 @@
 				%i.fa.fa-clock-o
 				=@game_line.formatted_date
 		.col-xs-6
-			%h3.lines-team{:role => "heading"}=@game_line.team_1.name
+			%h3.lines-team{:role => "heading"}=@game_line.team1.name
 			%span.odds +120
 			%br
 			%br
 			.btn.btn-primary Bet on this team
 		.col-xs-6
-			%h3.lines-team{:role => "heading"}=@game_line.team_2.name
+			%h3.lines-team{:role => "heading"}=@game_line.team2.name
 			%span.odds -110
 			%br
 			%br
