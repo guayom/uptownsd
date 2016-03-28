@@ -5,6 +5,7 @@
         = bet.team.name
       %span.pull-right.bet-price
         = bet.odds
-    %button.pull-right.event-remove
+    = link_to bet_path(bet), method: :delete, remote: true,
+      class: 'pull-right event-remove' do
       %span.glyphicon.glyphicon-remove{'aria-hidden' => true}
   .clearfix

@@ -13,6 +13,16 @@ class BetsController < ApplicationController
     end
   end
 
+  def destroy
+    bet = Bet.find(params[:id])
+    if current_user == bet.user && bet.draft?
+      bet.destroy
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
   private
 
   def bet_params
