@@ -2,4 +2,4 @@
   = render 'application/login_sb' unless user_signed_in?
 
   #bets
-    = render current_user.draft_bets if current_user.has_draft_bets?
+    = render current_user.draft_bets if current_user.try(:has_draft_bets?)
