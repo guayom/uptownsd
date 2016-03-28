@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :bets
   has_many :draft_bets, -> { draft.order(created_at: :desc) }, class_name: 'Bet'
+
+  def has_draft_bets?
+    draft_bets.any?
+  end
 end
