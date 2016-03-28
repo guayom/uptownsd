@@ -1,5 +1,5 @@
 class Bet < ActiveRecord::Base
-  DEFAULT_RISK = 25.00
+  DEFAULT_RISK = 10.00
 
   enum status: { draft: 0, active: 1 }
 
