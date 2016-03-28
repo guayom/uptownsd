@@ -70,3 +70,5 @@ group :production do
   gem 'rails_12factor'
 end
 
+#RUBY Version
+ruby '2.3.0'
