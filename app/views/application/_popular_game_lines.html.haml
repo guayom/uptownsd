@@ -1,4 +1,6 @@
 .row
   .col-lg-12
-    %h2.page-header Upcoming Games
-    =render partial: "game_lines/game_line", collection: @game_lines
+    %h2.page-header
+      Upcoming Games
+
+    = render @game_lines

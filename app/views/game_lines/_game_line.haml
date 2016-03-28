@@ -1,27 +1,31 @@
-%article.gamelie-section.row{:role => "article"}
-	.gameline-info
-		%table.table.game-line-table
-			%thead
-				%th
-					%time.time
-						%i.fa.fa-clock-o
-							=game_line.formatted_date
-				%th Odds
-				%th Place your bet
-			%tbody
-				%tr
-					%td
-						%h3.lines-team{:role => "heading"}=game_line.team1.name
-					%td
-						%span.odds +120
-					%td
-						%a.btn.btn-sm.btn-primary Bet on this team
-				%tr
-					%td
-						%h3.lines-team{:role => "heading"}=game_line.team2.name
-					%td
-						%span.odds -110
-					%td
-						%a.btn.btn-sm.btn-primary Bet on this team
-	.div
-		=link_to game_line.sport.title, game_line.sport, {:class =>  'btn btn-sm'}
+%article.gamelie-section.row{role: 'article'}
+  .gameline-info
+    %table.table.game-line-table
+      %thead
+        %th
+          %time.time
+            %i.fa.fa-clock-o
+              = game_line.formatted_date
+        %th Odds
+        %th Place your bet
+      %tbody
+        %tr
+          %td
+            %h3.lines-team{role: 'heading'}
+              = game_line.team1.name
+          %td
+            %span.odds
+              = game_line.team1_odds
+          %td
+            %a.btn.btn-sm.btn-primary Bet on this team
+        %tr
+          %td
+            %h3.lines-team{role: 'heading'}
+              = game_line.team2.name
+          %td
+            %span.odds
+              = game_line.team2_odds
+          %td
+            %a.btn.btn-sm.btn-primary Bet on this team
+  .div
+    = link_to game_line.sport.title, game_line.sport, {class:  'btn btn-sm'}
