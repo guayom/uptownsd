@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bets
-  has_many :draft_bets, -> { draft }, class_name: 'Bet'
+  has_many :draft_bets, -> { draft.order(created_at: :desc) }, class_name: 'Bet'
 end

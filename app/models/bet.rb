@@ -12,4 +12,8 @@ class Bet < ActiveRecord::Base
   validates_presence_of :team
   validates_presence_of :risk, unless: Proc.new { |bet| bet.draft? }
   validates_numericality_of :risk
+
+  def odds
+    game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
+  end
 end

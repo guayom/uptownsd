@@ -1,1 +1,10 @@
-!
+%section.col-lg-12.event-bet
+  %header.col-lg-12.event-header
+    %h2.col-xs-10
+      %span.event-team
+        = bet.team.name
+      %span.pull-right.bet-price
+        = bet.odds
+    %button.pull-right.event-remove
+      %span.glyphicon.glyphicon-remove{'aria-hidden' => true}
+  .clearfix
