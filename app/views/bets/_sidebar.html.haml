@@ -1,0 +1,36 @@
+- if current_user.try(:has_draft_bets?)
+  %aside#bet-slip.build-bet-view
+    %header.col-lg-12.betslip-mainheader
+      %h2.col-lg-12.betslip-title
+        %span.betslip-title
+          Bet Slip
+
+    = render current_user.draft_bets
+
+    %footer.col-lg-12.betslip-footer
+      %figure.col-lg-12.footer-header
+        %h2.bets-selected.pull-left
+          %span
+            = pluralize(current_user.draft_bets.count, 'Bet') + ' selected'
+      -#%button.pull-right.remove-selected
+      -#  %span.glyphicon.glyphicon-remove
+
+      %dl.col-lg-12.selected-list
+        %dt.col-lg-6
+          Total risk
+        %dt.col-lg-6
+          = number_to_currency(current_user.draft_bets.map(&:risk).sum)
+        %dt.col-lg-6
+          Total payout
+        %dt.col-lg-6
+          = number_to_currency(current_user.draft_bets.map(&:payout).sum)
+
+      %button.cta-button.btn.btn-danger.col-lg-12
+        Review bets
+
+      %p#login_msg.hide
+        You need to be logged in to place bets.
+        Please <a role="link">Log In</a> to proceed.
+      %p#deposit_msg.hide
+        You have insufficient funds to place bets.
+        Please <a role="link">Deposit</a> to proceed.

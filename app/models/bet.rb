@@ -16,4 +16,16 @@ class Bet < ActiveRecord::Base
   def odds
     game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
   end
+
+  def win
+    if odds > 0
+      risk * (odds / 100.0)
+    else
+      risk / (-1.0 * odds / 100.0)
+    end
+  end
+
+  def payout
+    win + risk
+  end
 end

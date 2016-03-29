@@ -21,9 +21,9 @@ $(function() {
     interval: 5000
   });
 
-  $('#sidebar').affix({
-    offset: {
-      top: $('header').height()
-    }
-  });
+  // $('#sidebar').affix({
+  //   offset: {
+  //     top: $('header').height()
+  //   }
+  // });
 });

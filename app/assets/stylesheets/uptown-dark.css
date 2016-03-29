@@ -809,3 +809,6 @@ p.league-time {
 .selected-list dd {
   text-align: right;
 }
+.selected-list dt {
+  padding-left: 0;
+}
