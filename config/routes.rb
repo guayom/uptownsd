@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :leagues
   resources :slides
   resources :game_lines
-  resources :bets, only: [:create, :destroy]
+  resources :bets, only: [:create, :update, :destroy]
   resources :categories
   resources :sports
   resources :promotions, only: [:show]

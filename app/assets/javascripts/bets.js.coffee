@@ -14,7 +14,15 @@
 
     $('.bet-win[data-bet="' + id + '"]').val(totalPayout.toFixed(2))
 
+    $updateButton = $('.bet-update[data-bet="' + id + '"]')
+    if parseFloat($updateButton.data('risk')) != risk
+      $updateButton.show()
+    else
+      $updateButton.hide()
+
   $('.bet-risk').change ->
+    updateBetWin $(this).data('bet')
+  $('.bet-risk').keyup ->
     updateBetWin $(this).data('bet')
 
   $('.bet-risk').each ->

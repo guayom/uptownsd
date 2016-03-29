@@ -13,6 +13,15 @@ class BetsController < ApplicationController
     end
   end
 
+  def update
+    bet = Bet.find(params[:id])
+    if bet.update!(bet_params)
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
   def destroy
     bet = Bet.find(params[:id])
     if current_user == bet.user && bet.draft?
