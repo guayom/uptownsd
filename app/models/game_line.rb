@@ -17,6 +17,10 @@ class GameLine < ActiveRecord::Base
                     path: ':rails_root/public/system/:class/:style/:basename.:extension'
   validates_attachment_content_type :image, content_type: /\Aimage/
 
+  has_many :bets
+  has_many :team1_bets, -> (l) { where(team_id: l.team1_id) }, class_name: 'Bet'
+  has_many :team2_bets, -> (l) { where(team_id: l.team2_id) }, class_name: 'Bet'
+
   scope :in_sport, -> (sport) { where(sport: sport) }
   scope :only_active, -> { where(active: true) }
 
@@ -24,16 +28,24 @@ class GameLine < ActiveRecord::Base
     configure :game_info do
       visible false
     end
+    configure :teams_info do
+      visible false
+    end
+    configure :odds_info do
+      visible false
+    end
+    configure :bets_info do
+      visible false
+    end
 
     list do
+      field :game_info
+      field :teams_info
+      field :odds_info
+      field :bets_info
       field :active do
         column_width 60
       end
-      field :game_info
-      field :team1
-      field :team1_odds
-      field :team2_odds
-      field :team2
       field :updated_at
     end
 
@@ -62,6 +74,20 @@ class GameLine < ActiveRecord::Base
     "#{sport.title},<br> #{league.name}".html_safe
   end
 
+  def teams_info
+    "#{team1.name}<hr>#{team2.name}".html_safe
+  end
+
+  def odds_info
+    "#{team1_odds}<hr>#{team2_odds}".html_safe
+  end
+
+  def bets_info
+    t1 = helpers.number_to_currency(team1_bets.map(&:risk).sum)
+    t2 = helpers.number_to_currency(team2_bets.map(&:risk).sum)
+    "#{t1}<hr>#{t2}".html_safe
+  end
+
   def title
     unless self.id.nil?
       "#{self.team1.name} vs. #{self.team2.name}"
@@ -72,5 +98,11 @@ class GameLine < ActiveRecord::Base
     @date = self.date.strftime('%A, %b %d')
     @time = self.time.strftime('%H:%M%P')
     return "#{@date} - #{@time}"
+  end
+
+  private
+
+  def helpers
+    ActionController::Base.helpers
   end
 end
