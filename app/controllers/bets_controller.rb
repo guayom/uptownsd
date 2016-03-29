@@ -1,9 +1,7 @@
 class BetsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
 
   def create
-    @bet = Bet.new(bet_params)
-    @bet.user = current_user
     @bet.risk = Bet::DEFAULT_RISK
 
     if @bet.save!
@@ -14,8 +12,7 @@ class BetsController < ApplicationController
   end
 
   def update
-    bet = Bet.find(params[:id])
-    if bet.update!(bet_params)
+    if @bet.update!(bet_params)
       respond_to do |format|
         format.js
       end
@@ -23,9 +20,8 @@ class BetsController < ApplicationController
   end
 
   def destroy
-    bet = Bet.find(params[:id])
-    if current_user == bet.user && bet.draft?
-      bet.destroy
+    if @bet.draft?
+      @bet.destroy
       respond_to do |format|
         format.js
       end
