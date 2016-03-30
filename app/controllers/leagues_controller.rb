@@ -5,6 +5,10 @@ class LeaguesController < ApplicationController
   # GET /leagues.json
   def index
     @leagues = League.all
+
+    if params[:sport_id]
+      @leagues = @leagues.where(sport_id: params[:sport_id])
+    end
   end
 
   # GET /leagues/1

@@ -57,6 +57,17 @@ class GameLine < ActiveRecord::Base
       field :league do
         inline_add false
         inline_edit false
+
+        # partial 'league'
+
+        # associated_collection_cache_all false
+        # associated_collection_scope do
+        #   game_line = bindings[:object]
+        #   Proc.new do |scope|
+        #     scope = scope.where(sport_id: game_line.sport_id) if game_line.present?
+        #     scope
+        #   end
+        # end
       end
       field :team1
       field :team1_odds

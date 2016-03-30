@@ -11,4 +11,10 @@ class Sport < ActiveRecord::Base
   has_many :game_lines
   has_many :leagues
   has_many :teams
+
+  def to_builder
+    Jbuilder.new do |sport|
+      sport.(self, :id, :title)
+    end
+  end
 end
