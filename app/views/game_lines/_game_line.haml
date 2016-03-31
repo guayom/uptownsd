@@ -15,7 +15,7 @@
               = game_line.team1.name
           %td
             %span.odds
-              = game_line.team1_odds
+              = with_sign(game_line.team1_odds)
           %td
             = link_to_add_bet(game_line, game_line.team1)
         %tr
@@ -24,8 +24,39 @@
               = game_line.team2.name
           %td
             %span.odds
-              = game_line.team2_odds
+              = with_sign(game_line.team2_odds)
           %td
             = link_to_add_bet(game_line, game_line.team2)
-  .div
-    = link_to game_line.sport.title, game_line.sport, {class:  'btn btn-sm'}
+
+  .add-bet.container
+    - bet = Bet.new(id: 666, game_line_id: game_line.id, team_id: game_line.team1.id)
+
+    .row
+      .col-sm-12.event-header
+        = link_to bet_path(bet), method: :delete, remote: true,
+          class: 'pull-right event-remove' do
+          %span.glyphicon.glyphicon-remove{'aria-hidden' => true}
+        %h2
+          I want to bet on the
+          = bet.team.name
+          = "(with odds #{with_sign(bet.odds)})"
+
+    = form_for bet, remote: true do |f|
+      .row
+        .col-sm-12.col-md-6
+          = f.label :risk, 'My risk'
+          = f.number_field :risk,
+                           step: 0.01, class: 'col-sm-12 bet-risk',
+                           data: { odds: bet.odds, bet: bet.id }, required: true
+
+        .col-sm-12.col-md-6
+          %label
+            I will get
+          %input.col-sm-12.bet-win{type: 'number', step: 0.01, disabled: true, data: { bet: bet.id }}
+
+      .row
+        .col-sm-12.col-md-6
+          = f.submit "That's right, place the bet",
+                     class: 'btn btn-success bet-update',
+                     style: 'margin: 10px auto;',
+                     data: { bet: bet.id, risk: bet.risk }
