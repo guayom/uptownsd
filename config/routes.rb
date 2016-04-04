@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users
+  resources :users, only: [] do
+    member do
+      get :profile
+    end
+  end
 
   get 'static_pages/about'
   get 'static_pages/help'

@@ -11,6 +11,9 @@
   / Top Menu Items
   %ul.nav.navbar-right.hidden-xs
     - if user_signed_in?
+      = link_to profile_user_path(current_user), class: 'btn btn-default' do
+        %span.glyphicon.glyphicon-user
+          Profile
       = link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger' do
         %span.glyphicon.glyphicon-ok-sign
         Log Out

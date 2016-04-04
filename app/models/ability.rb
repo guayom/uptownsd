@@ -3,7 +3,10 @@ class Ability
 
   def initialize(user)
     user ||= User.new
+
     can :manage, Bet, user_id: user.id
+
+    can :profile, User, id: user.id
 
     # Define abilities for the passed in user here. For example:
     #
