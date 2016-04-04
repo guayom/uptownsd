@@ -9,23 +9,29 @@
         = "(with odds #{with_sign(bet.odds)})"
 
   = form_for bet, remote: true do |f|
-    .row
+    .row{style: 'margin-bottom: 10px;'}
       .col-sm-12.col-md-6
         = f.label :risk, 'My risk'
         = f.number_field :risk,
                          step: 0.01, class: 'col-sm-12 bet-risk',
-                         data: { odds: bet.odds }, required: true
+                         data: { odds: bet.odds,
+                                 game_line: bet.game_line_id,
+                                 team: bet.team_id },
+                         required: true
 
       .col-sm-12.col-md-6
         %label
           I will get
         = f.number_field :payout, class: 'col-sm-12 bet-payout',
                                   step: 0.01,
-                                  disabled: true
+                                  disabled: true,
+                                  data: { game_line: bet.game_line_id,
+                                          team: bet.team_id }
+
 
     .row
       .col-sm-12.col-md-6
         = f.submit "That's right, place the bet",
-                   class: 'btn btn-success bet-update',
+                   class: 'btn btn-success bet-add',
                    style: 'margin: 10px auto;',
-                   data: { bet: bet.id, risk: bet.risk }
+                   data: { game_line: bet.game_line_id, team: bet.team_id }

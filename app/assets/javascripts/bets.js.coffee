@@ -1,6 +1,7 @@
 @initBets = ->
-  updateBetWin = (id) ->
-    bet = $('.bet-risk[data-bet="' + id + '"]')
+  updateBetWin = (gameLine, team) ->
+    attrs = '[data-game-line="' + gameLine + '"][data-team="' + team + '"]';
+    bet = $(".bet-risk#{attrs}")
     risk = parseFloat(bet.val())
     odds = parseFloat(bet.data('odds'))
     win = 0
@@ -11,22 +12,21 @@
       win = risk / (-1 * odds / 100.0)
 
     totalPayout = win + risk
+    $(".bet-payout#{attrs}").val(totalPayout.toFixed(2))
 
-    $('.bet-win[data-bet="' + id + '"]').val(totalPayout.toFixed(2))
-
-    $updateButton = $('.bet-update[data-bet="' + id + '"]')
-    if parseFloat($updateButton.data('risk')) != risk
-      $updateButton.show()
+    $addButton = $(".bet-add#{attrs}")
+    if risk > 0
+      $addButton.show()
     else
-      $updateButton.hide()
+      $addButton.hide()
 
   $('.bet-risk').change ->
-    updateBetWin $(this).data('bet')
+    updateBetWin $(this).data('game-line'), $(this).data('team')
   $('.bet-risk').keyup ->
-    updateBetWin $(this).data('bet')
+    updateBetWin $(this).data('game-line'), $(this).data('team')
 
   $('.bet-risk').each ->
-    updateBetWin $(this).data('bet')
+    updateBetWin $(this).data('game-line'), $(this).data('team')
 
 $ ->
   initBets()
