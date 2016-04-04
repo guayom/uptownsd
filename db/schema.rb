@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328111106) do
+ActiveRecord::Schema.define(version: 20160404104559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,18 @@ ActiveRecord::Schema.define(version: 20160328111106) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "kind",       null: false
+    t.integer  "bet_id"
+    t.decimal  "amount",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "transactions", ["bet_id"], name: "index_transactions_on_bet_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -149,4 +161,6 @@ ActiveRecord::Schema.define(version: 20160328111106) do
   add_foreign_key "bets", "game_lines"
   add_foreign_key "bets", "teams"
   add_foreign_key "bets", "users"
+  add_foreign_key "transactions", "bets"
+  add_foreign_key "transactions", "users"
 end

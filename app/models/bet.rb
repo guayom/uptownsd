@@ -7,11 +7,19 @@ class Bet < ActiveRecord::Base
   belongs_to :game_line
   belongs_to :team
 
+  has_many :transactions
+
   validates_presence_of :user
   validates_presence_of :game_line
   validates_presence_of :team
-  validates_presence_of :risk, unless: Proc.new { |bet| bet.draft? }
+  validates_presence_of :risk
   validates_numericality_of :risk
+
+  validate on: :create do |bet|
+    if bet.risk > user.balance
+      errors.add(:risk, 'cannot be bigger than current balance.')
+    end
+  end
 
   def odds
     game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
