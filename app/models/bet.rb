@@ -1,7 +1,7 @@
 class Bet < ActiveRecord::Base
   DEFAULT_RISK = 10.00
 
-  enum status: { draft: 0, active: 1 }
+  enum status: { draft: 0, active: 1, lost: 2 }
 
   belongs_to :user
   belongs_to :game_line

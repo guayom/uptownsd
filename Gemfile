@@ -61,6 +61,7 @@ group :development do
 
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'heroku'
   gem 'quiet_assets'
   gem 'rails-erd'
 end

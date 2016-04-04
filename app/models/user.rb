@@ -12,10 +12,19 @@ class User < ActiveRecord::Base
     configure :balance_info do
       visible false
     end
+    configure :total_won_info do
+      visible false
+    end
+    configure :total_lost_info do
+      visible false
+    end
 
     list do
       field :email
       field :balance_info
+      field :total_won_info
+      field :total_lost_info
+      field :created_at
     end
   end
 
@@ -29,6 +38,22 @@ class User < ActiveRecord::Base
 
   def balance_info
     helpers.number_to_currency(balance)
+  end
+
+  def total_won
+    transactions.get_the_win.sum(:amount)
+  end
+
+  def total_won_info
+    helpers.number_to_currency(total_won)
+  end
+
+  def total_lost
+    transactions.lost.sum(:amount)
+  end
+
+  def total_lost_info
+    helpers.number_to_currency(total_lost)
   end
 
   private

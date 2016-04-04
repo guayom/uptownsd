@@ -4,6 +4,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :bet
 
+  scope :lost, -> { make_bet.joins(:bet).where(bets: { status: 2 }) }
+
   validates_presence_of :user
   validates_presence_of :kind
   validates_presence_of :amount
