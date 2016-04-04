@@ -30,3 +30,24 @@
 
 $ ->
   initBets()
+
+  $('.link_to_add_bet').click (e) ->
+    gameLine = $(this).data('game-line')
+    team = $(this).data('team')
+    betDiv = ".add-bet[data-game-line=\"#{gameLine}\"][data-team=\"#{team}\"]"
+    $(betDiv).show()
+    $("#{betDiv} .bet-risk").focus()
+
+    $(this).hide();
+
+    e.preventDefault()
+
+  $('.add-bet .event-remove').click (e) ->
+    $(this).parents('.add-bet').hide()
+
+    gameLine = $(this).parents('.add-bet').data('game-line')
+    team = $(this).parents('.add-bet').data('team')
+    betAddLink = ".link_to_add_bet[data-game-line=\"#{gameLine}\"][data-team=\"#{team}\"]"
+    $(betAddLink).show()
+
+    e.preventDefault()

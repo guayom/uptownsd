@@ -18,14 +18,16 @@ class Bet < ActiveRecord::Base
   end
 
   def win
-    if odds > 0
-      risk * (odds / 100.0)
-    else
-      risk / (-1.0 * odds / 100.0)
-    end
+    win = if odds > 0
+            risk * (odds / 100.0)
+          else
+            risk / (-1.0 * odds / 100.0)
+          end
+
+    win.round(2)
   end
 
   def payout
-    win + risk
+    (win + risk).round(2)
   end
 end
