@@ -6,9 +6,6 @@
       %br
       %span.bet-price
         = bet.odds
-    = link_to bet_path(bet), method: :delete, remote: true,
-      class: 'pull-right event-remove' do
-      %span.glyphicon.glyphicon-remove{'aria-hidden' => true}
   .col-lg-12.event-body
     %p.col-lg-12.league-time
       %span.pull-left
@@ -19,14 +16,16 @@
         = bet.game_line.time.to_s(:time)
   %footer.col-lg-12.event-footer
     = form_for bet, remote: true do |f|
-      %figure.col-lg-6.col-sm-12.pull-left
-        = f.label :risk
-        = f.number_field :risk, step: 0.01, class: 'col-lg-12 bet-risk',
-                         data: { odds: bet.odds, bet: bet.id }, required: true
-      %figure.col-lg-6.col-sm-12.pull-right
+      %figure.col-lg-6.col-sm-12
+        %label
+          Risk
+        %p.form-control-static
+          = number_to_currency(bet.risk)
+      %figure.col-lg-6.col-sm-12
         %label
           Payout
-        %input.col-lg-12.bet-win{type: 'number', step: 0.01, disabled: true, data: { bet: bet.id }}
+        %p.form-control-static
+          = number_to_currency(bet.payout)
 
       = f.submit 'Update my risk',
                  class: 'cta-button btn btn-success col-lg-12 bet-update',

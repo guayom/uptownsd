@@ -9,6 +9,9 @@
         = "(with odds #{with_sign(bet.odds)})"
 
   = form_for bet, remote: true do |f|
+    = f.hidden_field :game_line_id
+    = f.hidden_field :team_id
+
     .row{style: 'margin-bottom: 10px;'}
       .col-sm-12.col-md-6
         = f.label :risk, 'My risk'

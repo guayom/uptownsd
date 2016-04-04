@@ -20,6 +20,9 @@
     else
       $addButton.hide()
 
+    $addButton.click ->
+      hideBetForm(gameLine, team)
+
   $('.bet-risk').change ->
     updateBetWin $(this).data('game-line'), $(this).data('team')
   $('.bet-risk').keyup ->
@@ -28,6 +31,13 @@
   $('.bet-risk').each ->
     updateBetWin $(this).data('game-line'), $(this).data('team')
 
+@hideBetForm = (gameLine, team) ->
+  attrs = '[data-game-line="' + gameLine + '"][data-team="' + team + '"]';
+#  $(".add-bet#{attrs}").hide()
+  $(".add-bet#{attrs}").slideUp()
+  $(".link_to_add_bet#{attrs}").show()
+  console.log('!')
+
 $ ->
   initBets()
 
@@ -35,7 +45,8 @@ $ ->
     gameLine = $(this).data('game-line')
     team = $(this).data('team')
     betDiv = ".add-bet[data-game-line=\"#{gameLine}\"][data-team=\"#{team}\"]"
-    $(betDiv).show()
+#    $(betDiv).show()
+    $(betDiv).slideDown()
     $("#{betDiv} .bet-risk").focus()
 
     $(this).hide();
@@ -43,11 +54,8 @@ $ ->
     e.preventDefault()
 
   $('.add-bet .event-remove').click (e) ->
-    $(this).parents('.add-bet').hide()
-
     gameLine = $(this).parents('.add-bet').data('game-line')
     team = $(this).parents('.add-bet').data('team')
-    betAddLink = ".link_to_add_bet[data-game-line=\"#{gameLine}\"][data-team=\"#{team}\"]"
-    $(betAddLink).show()
+    hideBetForm(gameLine, team)
 
     e.preventDefault()

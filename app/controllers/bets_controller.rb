@@ -2,8 +2,6 @@ class BetsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @bet.risk = Bet::DEFAULT_RISK
-
     if @bet.save!
       respond_to do |format|
         format.js

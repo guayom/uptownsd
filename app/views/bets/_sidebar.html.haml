@@ -11,9 +11,7 @@
       %figure.col-lg-12.footer-header
         %h2.bets-selected.pull-left
           %span
-            = pluralize(current_user.draft_bets.count, 'Bet') + ' selected'
-      -#%button.pull-right.remove-selected
-      -#  %span.glyphicon.glyphicon-remove
+            = pluralize(current_user.draft_bets.count, 'Bet')
 
       %dl.col-lg-12.selected-list
         %dt.col-lg-6
