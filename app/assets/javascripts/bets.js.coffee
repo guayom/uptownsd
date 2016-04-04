@@ -20,9 +20,6 @@
     else
       $addButton.hide()
 
-    $addButton.click ->
-      hideBetForm(gameLine, team)
-
   $('.bet-risk').change ->
     updateBetWin $(this).data('game-line'), $(this).data('team')
   $('.bet-risk').keyup ->

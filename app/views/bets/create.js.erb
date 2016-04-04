@@ -1,2 +1,7 @@
-$('#bets').html('<%=j render 'bets/sidebar' %>');
-initBets();
+<% if @bet.invalid? %>
+  alert('<%= @bet.errors.full_messages.join('. ') %>');
+<% else %>
+  hideBetForm(<%= @bet.game_line_id %>, <%= @bet.team_id %>);
+  $('#bets').html('<%=j render 'bets/sidebar' %>');
+  initBets();
+<% end %>

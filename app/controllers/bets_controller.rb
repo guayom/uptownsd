@@ -2,10 +2,9 @@ class BetsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    if @bet.save!
-      respond_to do |format|
-        format.js
-      end
+    @bet.save
+    respond_to do |format|
+      format.js
     end
   end
 
