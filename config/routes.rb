@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     member do
       get :profile
+      get :bets
     end
   end
 

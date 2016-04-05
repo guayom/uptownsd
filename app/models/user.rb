@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :bets
+  has_many :bets, -> { order(created_at: :desc) }
   has_many :draft_bets, -> { draft.order(created_at: :desc) }, class_name: 'Bet'
   has_many :transactions
 

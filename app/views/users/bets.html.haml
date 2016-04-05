@@ -1,0 +1,21 @@
+%h1
+  My bets
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        Date
+      %th
+        Risk
+      %th
+        Team
+  %tbody
+    - @user.bets.each do |bet|
+      %tr
+        %td
+          = l(bet.created_at)
+        %td
+          = number_to_currency(bet.risk)
+        %td
+          = link_to bet, bet
