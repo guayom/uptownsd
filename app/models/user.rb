@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bets, -> { order(created_at: :desc) }
-  has_many :draft_bets, -> { draft.order(created_at: :desc) }, class_name: 'Bet'
   has_many :transactions
 
   rails_admin do
@@ -28,8 +27,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_draft_bets?
-    draft_bets.any?
+  def has_active_bets?
+    bets.active.any?
   end
 
   def balance
