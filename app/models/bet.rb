@@ -21,6 +21,14 @@ class Bet < ActiveRecord::Base
     end
   end
 
+  after_create do
+    t = self.user.transactions.build
+    t.kind = :make_bet
+    t.amount = -self.risk
+    t.bet = self
+    t.save!
+  end
+
   def odds
     game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
   end
@@ -40,6 +48,6 @@ class Bet < ActiveRecord::Base
   end
 
   def to_s
-    "#{team.name} (#{odds >= 0 ? '+' + odds : odds})"
+    "#{team.name} (#{odds >= 0 ? '+' + odds.to_s : odds})"
   end
 end
