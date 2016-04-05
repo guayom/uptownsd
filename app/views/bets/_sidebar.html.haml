@@ -5,7 +5,7 @@
         %span.betslip-title
           Bet Slip
 
-    = render current_user.draft_bets
+    = render collection: current_user.draft_bets, partial: 'bets/bet'
 
     %footer.col-lg-12.betslip-footer
       %figure.col-lg-12.footer-header
