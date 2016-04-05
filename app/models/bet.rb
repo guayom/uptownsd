@@ -38,4 +38,8 @@ class Bet < ActiveRecord::Base
   def payout
     (win + risk).round(2)
   end
+
+  def to_s
+    "#{team.name} (#{odds >= 0 ? '+' + odds : odds})"
+  end
 end

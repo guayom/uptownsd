@@ -1,2 +1,52 @@
 %h1
   Profile
+
+= link_to 'Update personal information', edit_user_registration_path, style: 'font-size: 1.5em;'
+
+%h2
+  My stats
+
+%table.table.table-hover
+  %tbody
+    %tr
+      %th
+        Balance
+      %td
+        = number_to_currency(current_user.balance)
+    %tr
+      %th
+        Total won
+      %td
+        = number_to_currency(current_user.total_won)
+    %tr
+      %th
+        Total lost
+      %td
+        = number_to_currency(current_user.total_lost)
+
+%h2
+  Balance transactions
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+        Date
+      %th
+        Type
+      %th
+        Amount
+      %th
+        Bet
+  %tbody
+    - current_user.transactions.order(created_at: :desc).each do |t|
+      %tr
+        %td
+          = l(t.created_at)
+        %td
+          = t.kind.humanize
+        %td
+          = t.amount >= 0 ? '+' : '-'
+          = number_to_currency(t.amount.abs)
+        %td
+          = link_to_if t.bet.present?, t.bet, t.bet
