@@ -1,6 +1,17 @@
 %h1
   My bets
 
+%ul.nav.nav-pills
+  %li{role: 'presentation', class: ('active' if 'all' == params[:type])}
+    = link_to bets_user_path(type: 'all') do
+      All bets
+  %li{role: 'presentation', class: ('active' if 'active' == params[:type])}
+    = link_to bets_user_path(type: 'active') do
+      Active
+  %li{role: 'presentation', class: ('active' if 'archived' == params[:type])}
+    = link_to bets_user_path(type: 'archived') do
+      Archived
+
 %table.table.table-hover
   %thead
     %tr
@@ -11,7 +22,7 @@
       %th
         Team
   %tbody
-    - @user.bets.each do |bet|
+    - @bets.each do |bet|
       %tr
         %td
           = l(bet.created_at)

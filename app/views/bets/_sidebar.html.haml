@@ -23,7 +23,8 @@
         %dt.col-lg-6
           = number_to_currency(current_user.draft_bets.map(&:payout).sum)
 
-      %button.cta-button.btn.btn-danger.col-lg-12
+      = link_to bets_user_path(id: current_user.id),
+                class: 'cta-button btn btn-danger col-lg-12' do
         Review bets
 
       %p#login_msg.hide
