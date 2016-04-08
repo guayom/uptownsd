@@ -1,5 +1,4 @@
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   config.authenticate_with do

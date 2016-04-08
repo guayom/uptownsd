@@ -24,6 +24,11 @@ class GameLine < ActiveRecord::Base
   scope :in_sport, -> (sport) { where(sport: sport) }
   scope :only_active, -> { where(active: true) }
 
+  scope :upcoming, -> (count = 6) {
+    includes(:team1, :team2).
+      where('time >= ?', Time.zone.now).limit(count).order(time: :desc)
+  }
+
   rails_admin do
     configure :game_info do
       visible false
@@ -57,23 +62,11 @@ class GameLine < ActiveRecord::Base
       field :league do
         inline_add false
         inline_edit false
-
-        # partial 'league'
-
-        # associated_collection_cache_all false
-        # associated_collection_scope do
-        #   game_line = bindings[:object]
-        #   Proc.new do |scope|
-        #     scope = scope.where(sport_id: game_line.sport_id) if game_line.present?
-        #     scope
-        #   end
-        # end
       end
       field :team1
       field :team1_odds
       field :team2_odds
       field :team2
-      field :date
       field :time
       field :limit
       field :image
@@ -105,10 +98,8 @@ class GameLine < ActiveRecord::Base
     end
   end
 
-  def formatted_date
-    @date = self.date.strftime('%A, %b %d')
-    @time = self.time.strftime('%H:%M%P')
-    return "#{@date} - #{@time}"
+  def formatted_time
+    time.strftime('%A, %b %d - %H:%M%P')
   end
 
   private

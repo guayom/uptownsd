@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405183851) do
+ActiveRecord::Schema.define(version: 20160408083116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 20160405183851) do
     t.integer  "league_id"
     t.integer  "team1_id"
     t.integer  "team2_id"
-    t.date     "date"
-    t.time     "time"
     t.integer  "limit"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -71,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160405183851) do
     t.boolean  "active",             default: false
     t.integer  "team1_odds"
     t.integer  "team2_odds"
+    t.datetime "time"
   end
 
   create_table "leagues", force: :cascade do |t|

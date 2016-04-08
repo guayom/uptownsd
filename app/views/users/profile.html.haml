@@ -51,4 +51,5 @@
           = t.amount >= 0 ? '+' : '-'
           = number_to_currency(t.amount.abs)
         %td
-          = link_to_if t.bet.present?, t.bet, t.bet
+          - if t.bet.present?
+            = link_to t.bet, t.bet.game_line
