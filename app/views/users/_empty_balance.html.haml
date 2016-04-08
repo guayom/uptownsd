@@ -1,0 +1,7 @@
+- unless 'add_credit' == params[:action]
+  .alert.alert-danger{role: 'alert'}
+    You should add credit to your balance in order to make bets!
+    %br
+    = link_to 'You can do it right now', add_credit_user_path(current_user),
+              style: 'color: #fff; font-size: 1.6em; text-decoration: underline;'
+

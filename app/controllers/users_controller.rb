@@ -12,4 +12,8 @@ class UsersController < ApplicationController
     @bets = @bets.active if 'active' == params[:type]
     @bets = @bets.archived if 'archived' == params[:type]
   end
+
+  def add_credit
+
+  end
 end

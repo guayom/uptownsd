@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     member do
       get :profile
       get :bets
+      get :add_credit
     end
   end
 

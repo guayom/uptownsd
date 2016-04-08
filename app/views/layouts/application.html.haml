@@ -38,6 +38,8 @@
                     &times;
                 = alert
 
+            = render 'users/empty_balance' if current_user.try(:empty_balance?)
+
             = yield
 
             = render 'application/footer'

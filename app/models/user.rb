@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     helpers.number_to_currency(total_lost)
   end
 
+  def empty_balance?
+    balance <= 0
+  end
+
   private
 
   def helpers

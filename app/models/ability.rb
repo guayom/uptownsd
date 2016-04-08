@@ -8,6 +8,7 @@ class Ability
 
     can :profile, User, id: user.id
     can :bets, User, id: user.id
+    can :add_credit, User, id: user.id
 
     # Define abilities for the passed in user here. For example:
     #
