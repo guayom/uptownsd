@@ -11,9 +11,7 @@
       %span.pull-left
         = bet.game_line.league.abbreviation
       %time.pull-right
-        = l(bet.game_line.date)
-        @
-        = bet.game_line.time.to_s(:time)
+        = l(bet.game_line.time)
   %footer.col-lg-12.event-footer
     = form_for bet, remote: true do |f|
       %figure.col-lg-6.col-sm-12
