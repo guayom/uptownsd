@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def total_won
-    transactions.get_the_win.sum(:amount)
+    transactions.get_the_win.sum(:amount).abs
   end
 
   def total_won_info

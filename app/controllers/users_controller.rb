@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   end
 
   def add_credit
+  end
 
+  def withdraw
   end
 end

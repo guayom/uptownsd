@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  enum kind: { deposit: 0, make_bet: 1, get_the_win: 2 }
+  enum kind: { deposit: 0, make_bet: 1, get_the_win: 2, lose_bet: 3 }
 
   belongs_to :user
   belongs_to :bet

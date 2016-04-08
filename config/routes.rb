@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get :profile
       get :bets
       get :add_credit
+      get :withdraw
     end
   end
 
