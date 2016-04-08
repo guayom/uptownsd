@@ -5,6 +5,7 @@ class Ability
     user ||= User.new
 
     can :manage, Bet, user_id: user.id
+    can :create, Transaction, user_id: user.id
 
     can :profile, User, id: user.id
     can :bets, User, id: user.id

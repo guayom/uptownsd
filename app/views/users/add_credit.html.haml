@@ -1,1 +1,19 @@
-123
+%h1
+  Add credit
+
+= form_for current_user.transactions.build(kind: :deposit),
+           html: { class: 'form-horizontal' } do |f|
+  = f.hidden_field :user_id
+  = f.hidden_field :kind
+
+  .form-group
+    = f.label :amount, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :amount, class: 'form-control'
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit 'Deposit',
+                 class: 'btn btn-primary',
+                 data: { confirm: 'This is just a stub! In production here will be some payment processing!' }
+
