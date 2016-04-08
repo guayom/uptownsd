@@ -94,12 +94,18 @@ class GameLine < ActiveRecord::Base
 
   def title
     unless self.id.nil?
-      "#{self.team1.name} vs. #{self.team2.name}"
+      "#{self.team1.name} vs. #{self.team2.name} (#{formatted_time})"
     end
   end
 
   def formatted_time
     time.strftime('%A, %b %d - %H:%M%P')
+  end
+
+  def process_results!(winner_team)
+    if team1 != winner_team && team2 != winner_team
+      fail "That team doesn't take part in this game."
+    end
   end
 
   private

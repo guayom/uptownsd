@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408132651) do
+ActiveRecord::Schema.define(version: 20160408132652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20160408132651) do
     t.integer  "team2_odds"
     t.datetime "time"
   end
+
+  create_table "game_results", force: :cascade do |t|
+    t.integer  "game_line_id", null: false
+    t.integer  "team_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "game_results", ["game_line_id"], name: "index_game_results_on_game_line_id", using: :btree
+  add_index "game_results", ["team_id"], name: "index_game_results_on_team_id", using: :btree
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"
@@ -160,6 +170,8 @@ ActiveRecord::Schema.define(version: 20160408132651) do
   add_foreign_key "bets", "game_lines"
   add_foreign_key "bets", "teams"
   add_foreign_key "bets", "users"
+  add_foreign_key "game_results", "game_lines"
+  add_foreign_key "game_results", "teams"
   add_foreign_key "transactions", "bets"
   add_foreign_key "transactions", "users"
 end

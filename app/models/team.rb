@@ -12,4 +12,5 @@ class Team < ActiveRecord::Base
   validates_presence_of :name
 
 	has_many :game_lines
+	has_many :game_results
 end
