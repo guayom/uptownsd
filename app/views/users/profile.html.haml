@@ -24,7 +24,8 @@
       %td
         = number_to_currency(current_user.total_lost)
 
-= link_to 'Add credit to make more bets', '#', class: 'add-credit btn btn-success btn-lg'
+= link_to 'Add credit to make more bets', add_credit_user_path,
+          class: 'add-credit btn btn-success btn-lg'
 
 %h2
   Balance transactions
