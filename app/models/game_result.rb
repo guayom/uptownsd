@@ -9,6 +9,9 @@ class GameResult < ActiveRecord::Base
         if game_result.team == bet.team
           # Win!
           bet.user.transactions.create!(kind: :win, amount: bet.payout)
+          bet.update_attributes!(status: :won)
+        else
+          bet.update_attributes!(status: :lost)
         end
       end
     end
