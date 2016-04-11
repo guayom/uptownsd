@@ -64,6 +64,7 @@ group :development do
   gem 'heroku'
   gem 'quiet_assets'
   gem 'rails-erd'
+  gem 'traceroute'
 end
 
 group :production do

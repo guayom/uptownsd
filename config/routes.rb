@@ -2,14 +2,15 @@ Rails.application.routes.draw do
 
   get '/game_lines/:id', to: 'game_lines#show'
 
-  resources :teams
+  # resources :slides
+
+  resources :sports, only: [:index, :show]
   resources :leagues
-  resources :slides
-  resources :game_lines
+  resources :teams
+  resources :game_lines, only: [:index, :show]
   resources :bets, only: [:create, :update, :destroy]
   resources :transactions, only: [:create]
   resources :categories
-  resources :sports
   resources :promotions, only: [:show]
 
   devise_for :admin
