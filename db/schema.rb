@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408132652) do
+ActiveRecord::Schema.define(version: 20160714175415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,10 @@ ActiveRecord::Schema.define(version: 20160408132652) do
     t.integer  "team1_odds"
     t.integer  "team2_odds"
     t.datetime "time"
+    t.string   "team1_line"
+    t.string   "team1_total"
+    t.string   "team2_line"
+    t.string   "team2_total"
   end
 
   create_table "game_results", force: :cascade do |t|
