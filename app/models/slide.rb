@@ -1,10 +1,8 @@
 class Slide < ActiveRecord::Base
 
-	has_attached_file :image, 
-	styles: { medium: "700x450>", full: "1900x720>" }, 
-	default_url: "/images/:style/missing.png",
-	:url => "/system/:class/:style/:basename.:extension",
-  	:path => ":rails_root/public/system/:class/:style/:basename.:extension"
+	has_attached_file :image,
+										styles: { medium: '700x450>', full: '1900x720>' },
+										default_url: '/images/:style/missing.png'
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 end
