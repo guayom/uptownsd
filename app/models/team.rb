@@ -11,6 +11,7 @@ class Team < ActiveRecord::Base
   validates_presence_of :sport
   validates_presence_of :name
 
-	has_many :game_lines, dependent: :destroy
+	has_many :game_lines_as_team1, class_name: 'GameLine', foreign_key: :team1_id, dependent: :destroy
+	has_many :game_lines_as_team2, class_name: 'GameLine', foreign_key: :team2_id, dependent: :destroy
 	has_many :game_results
 end

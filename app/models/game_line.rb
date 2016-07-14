@@ -4,10 +4,10 @@ class GameLine < ActiveRecord::Base
 
   belongs_to :league
 
-  belongs_to :team1, class_name: 'Team'
+  belongs_to :team1, class_name: 'Team', inverse_of: :game_lines_as_team1
   validates_presence_of :team1
 
-  belongs_to :team2, class_name: 'Team'
+  belongs_to :team2, class_name: 'Team', inverse_of: :game_lines_as_team2
   validates_presence_of :team2
 
   has_attached_file :image,
