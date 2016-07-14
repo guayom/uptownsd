@@ -11,6 +11,6 @@ class Team < ActiveRecord::Base
   validates_presence_of :sport
   validates_presence_of :name
 
-	has_many :game_lines
+	has_many :game_lines, dependent: :destroy
 	has_many :game_results
 end

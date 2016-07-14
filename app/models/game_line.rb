@@ -17,7 +17,7 @@ class GameLine < ActiveRecord::Base
                     path: ':rails_root/public/system/:class/:style/:basename.:extension'
   validates_attachment_content_type :image, content_type: /\Aimage/
 
-  has_many :bets
+  has_many :bets, dependent: :destroy
   has_many :team1_bets, -> (l) { where(team_id: l.team1_id) }, class_name: 'Bet'
   has_many :team2_bets, -> (l) { where(team_id: l.team2_id) }, class_name: 'Bet'
 
