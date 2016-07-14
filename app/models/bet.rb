@@ -7,7 +7,7 @@ class Bet < ActiveRecord::Base
   belongs_to :game_line
   belongs_to :team
 
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
 
   validates_presence_of :user
   validates_presence_of :game_line
