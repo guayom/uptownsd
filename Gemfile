@@ -26,9 +26,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'rails_admin'
 
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+gem 'aws-sdk'
 
-gem "haml"
+gem 'haml'
 
 gem 'faker', '~> 1.6', '>= 1.6.3'
 
