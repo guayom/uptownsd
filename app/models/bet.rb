@@ -36,6 +36,8 @@ class Bet < ActiveRecord::Base
   end
 
   def win
+    return 0 unless odds.present?
+
     win = if odds > 0
             risk * (odds / 100.0)
           else
