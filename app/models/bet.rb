@@ -13,7 +13,7 @@ class Bet < ActiveRecord::Base
   validates_presence_of :game_line
   validates_presence_of :team
   validates_presence_of :risk
-  validates_numericality_of :risk
+  validates_numericality_of :risk, greater_than_or_equal_to: 5, less_than_or_equal_to: 200
 
   validate on: :create do |bet|
     if bet.risk > user.balance
