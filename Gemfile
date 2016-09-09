@@ -48,6 +48,8 @@ gem 'nokogiri'
 gem 'rails-i18n'
 gem 'wysiwyg-rails', '1.2.8'
 
+gem "figaro"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
