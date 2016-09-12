@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714180248) do
+ActiveRecord::Schema.define(version: 20160910173414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20160714180248) do
   end
 
   create_table "game_lines", force: :cascade do |t|
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "sport_id"
     t.integer  "league_id"
     t.integer  "team1_id"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160714180248) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "active",             default: false
+    t.boolean  "active",                default: false
     t.integer  "team1_odds"
     t.integer  "team2_odds"
     t.datetime "time"
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 20160714180248) do
     t.string   "team2_line"
     t.string   "team2_total"
     t.text     "place"
+    t.integer  "spread_pts_team_1"
+    t.integer  "spread_pts_team_2"
+    t.integer  "spread_val_team_1"
+    t.integer  "spread_val_team_2"
+    t.integer  "over_under_total"
+    t.integer  "over_under_val_team_1"
+    t.integer  "over_under_val_team_2"
+    t.integer  "money_line_team_1"
+    t.integer  "money_line_team_2"
   end
 
   create_table "game_results", force: :cascade do |t|
