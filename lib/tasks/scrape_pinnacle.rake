@@ -25,27 +25,18 @@ namespace :scrape_pinnacle do
     	game_table.css('.wisbb_teamName').each_with_index do |team, index|
     		@teams[index] = "#{@teams[index]} #{team.text}"
     	end
-
-      #check if the game line exists
-      #check Gamelines or a game that has the same datetime, team 1 and team 2
-
+      #Check if the teams exist, if not, create it, and collect their id's
+      @team_ids = []
       @teams.each_with_index do |team, index|
         if Team.where(name: team, sport_id: sport_id).any?
-          if index == 0
-            game.attributes = {team1_id: Team.where(name: team, sport_id: sport_id).first.id}
-          else
-            game.attributes = {team2_id: Team.where(name: team, sport_id: sport_id).first.id}
-          end
+          @team_ids << Team.where(name: team, sport_id: sport_id).first.id
         else
           puts "#{team} - Doesn't exist"
           Team.create(name: team, sport_id: sport_id)
-          if index == 0
-            game.attributes = {team1_id: Team.where(name: team, sport_id: sport_id).first.id}
-          else
-            game.attributes = {team2_id: Team.where(name: team, sport_id: sport_id).first.id}
-          end
         end
       end
+      #Once teams exist and we have their id's, assign team attributes to the game
+      game.attributes = {team1_id: @team_ids[0], team2_id: @team_ids[1]}
 
       #Odds sources
       @selected_source = "BOVADA.lv"
@@ -71,7 +62,17 @@ namespace :scrape_pinnacle do
           }
         end
       end
-      GameLine.save if GameLine.where(time: date, team1_id: @teams[0], team2_id: @teams[1]).nil?
+
+      if GameLine.where(time: date, team1_id: @team_ids[0], team2_id: @team_ids[1]).empty?
+        game.save
+        puts "Game Saved"
+        puts game.inspect
+        puts '---'
+      else
+        puts "Game already exists"
+        puts game.inspect
+        puts '---'
+      end
     end
   end
 end
