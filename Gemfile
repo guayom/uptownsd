@@ -47,7 +47,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'nokogiri'
 gem 'rails-i18n'
 gem 'wysiwyg-rails', '1.2.8'
-
+gem 'watir', '~> 5.0'
 gem "figaro"
 
 group :development, :test do

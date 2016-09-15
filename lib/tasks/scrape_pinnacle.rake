@@ -1,12 +1,22 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'watir'
 namespace :scrape_pinnacle do
+
+  desc "reset all Gamelines"
+  task :reset_game_lines => :environment do
+    GameLine.destroy_all
+  end
 
   desc "Do some scrapping testing"
   task :football_nfl => :environment do
     sport_id = Sport.where(title: "Football").first.id
-    games = Nokogiri::HTML(open("http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"))
+    browser = Watir::Browser.new
+    browser.goto 'http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"'
+
+    #games = Nokogiri::HTML(open("http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"))
+    games = Nokogiri::HTML.parse(browser.html)
     games.css(".wisbb_gameWrapper").each do |game_table|
       game = GameLine.new(:sport_id => Sport.where(title: 'Football').first.id, :league_id => League.where(name: "NFL").first.id)
     	#Get datetime
@@ -45,20 +55,20 @@ namespace :scrape_pinnacle do
         source_title = source.css('.wisbb_bookCol').text
         @odds_sources << source_title
         if source_title == @selected_source
-          runLinePts = source.css('.wisbb_runLinePtsCol').inner_html.split('<br>')
-          spread_vals = source.css('.wisbb_runLineValsCol').inner_html.split('<br>')
-          over_under_vals = source.css('.wisbb_overUnderValsCol').inner_html.split('<br>')
-          moneyline_vals = source.css('.wisbb_moneyLineCol').inner_html.split('<br>')
+          runLinePts = source.css('.wisbb_runLinePtsCol').inner_html.strip.split('<br>')
+          spread_vals = source.css('.wisbb_runLineValsCol').inner_html.strip.split('<br>')
+          over_under_vals = source.css('.wisbb_overUnderValsCol').inner_html.strip.split('<br>')
+          moneyline_vals = source.css('.wisbb_moneyLineCol').inner_html.strip.split('<br>')
           game.attributes = {
-            spread_pts_team_1: runLinePts[0].to_i,
-            spread_pts_team_2: runLinePts[1].to_i,
-            spread_val_team_1: spread_vals[0].to_i,
-            spread_val_team_2: spread_vals[1].to_i,
+            spread_pts_team_1: runLinePts[0].tr("+", "").to_i,
+            spread_pts_team_2: runLinePts[1].tr("+", "").to_i,
+            spread_val_team_1: spread_vals[0].tr("+", "").to_i,
+            spread_val_team_2: spread_vals[1].tr("+", "").to_i,
             over_under_total: source.css('.wisbb_overUnderCol').text,
-            over_under_val_team_1: over_under_vals[0].tr("o:", "").to_i,
-            over_under_val_team_2: over_under_vals[1].tr("u:", "").to_i,
-            money_line_team_1: moneyline_vals[0].to_i,
-            money_line_team_2: moneyline_vals[1].to_i
+            over_under_val_team_1: over_under_vals[0].tr("o:", "").tr("+", "").to_i,
+            over_under_val_team_2: over_under_vals[1].tr("u:", "").tr("+", "").to_i,
+            money_line_team_1: moneyline_vals[0].tr("+", "").to_i,
+            money_line_team_2: moneyline_vals[1].tr("+", "").to_i
           }
         end
       end

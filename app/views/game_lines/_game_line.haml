@@ -6,7 +6,9 @@
           %time.time
             %i.fa.fa-clock-o
               = game_line.formatted_time
-        %th Odds
+        %th Spread
+        %th{:colspan => 2} Total
+        %th Moneyline
         %th Place your bet
       %tbody
         %tr
@@ -15,7 +17,13 @@
               = game_line.team1.name
           %td
             %span.odds
-              = with_sign(game_line.team1_odds)
+              = "#{game_line.spread_pts_team_1} #{game_line.spread_val_team_1}"
+          %td.over_under_total{:rowspan => 2, :valign => "bottom"}
+            = "#{game_line.over_under_total} O/U"
+          %td
+            = game_line.over_under_val_team_1
+          %td
+            = game_line.money_line_team_1
           %td
             = link_to 'Bet on this team', '#',
                       class: 'btn btn-sm btn-primary link_to_add_bet',
@@ -27,7 +35,11 @@
               = game_line.team2.name
           %td
             %span.odds
-              = with_sign(game_line.team2_odds)
+              = "#{game_line.spread_pts_team_2} #{game_line.spread_val_team_2}"
+          %td
+            = game_line.over_under_val_team_2
+          %td
+            = game_line.money_line_team_2
           %td
             = link_to 'Bet on this team', '#',
                       class: 'btn btn-sm btn-primary link_to_add_bet',
