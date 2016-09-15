@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-require 'watir'
+#require 'watir'
 namespace :scrape_pinnacle do
 
   desc "reset all Gamelines"
@@ -12,11 +12,11 @@ namespace :scrape_pinnacle do
   desc "Do some scrapping testing"
   task :football_nfl => :environment do
     sport_id = Sport.where(title: "Football").first.id
-    browser = Watir::Browser.new
-    browser.goto 'http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"'
+    #browser = Watir::Browser.new
+    #browser.goto 'http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"'
 
-    #games = Nokogiri::HTML(open("http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"))
-    games = Nokogiri::HTML.parse(browser.html)
+    games = Nokogiri::HTML(open("http://www.foxsports.com/nfl/odds?season=2016&seasonType=1&week=1&type=0"))
+    #games = Nokogiri::HTML.parse(browser.html)
     games.css(".wisbb_gameWrapper").each do |game_table|
       game = GameLine.new(:sport_id => Sport.where(title: 'Football').first.id, :league_id => League.where(name: "NFL").first.id)
     	#Get datetime
