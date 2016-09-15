@@ -63,6 +63,12 @@ namespace :scrape_pinnacle do
         end
       end
 
+      #Check if game is active
+      if date.to_date.future?
+        puts "Game is in the future"
+        game.attributes = {active: true}
+      end
+
       if GameLine.where(time: date, team1_id: @team_ids[0], team2_id: @team_ids[1]).empty?
         game.save
         puts "Game Saved"
