@@ -61,11 +61,22 @@ class GameLine < ActiveRecord::Base
         inline_add false
         inline_edit false
       end
+
+
       field :team1
-      field :team1_odds
-      field :team2_odds
+      field :spread_pts_team_1
+      field :spread_val_team_1
+      field :over_under_val_team_1
+      field :money_line_team_1
+
       field :team2
-      field :time
+      field :spread_pts_team_2
+      field :spread_val_team_2
+      field :over_under_total
+      field :over_under_val_team_2
+      field :money_line_team_2
+
+      field :place
       field :limit
       field :image
       field :active
