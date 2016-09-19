@@ -25,6 +25,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'rails_admin'
+gem 'bootstrap-kaminari-views'
 
 gem 'paperclip'
 gem 'aws-sdk'

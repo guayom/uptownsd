@@ -17,6 +17,25 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    member :confirm do
+      link_icon 'icon-check'
+      only [Transaction]
+      visible do
+        [Transaction].include?(bindings[:abstract_model].model) &&
+          bindings[:object].deposit? &&
+          (bindings[:object].confirmed.blank? || !bindings[:object].confirmed?)
+      end
+      controller do
+        Proc.new do
+          @object.update_attributes!(confirmed: true)
+
+          flash[:success] = "#{@model_config.label} is now confirmed."
+
+          redirect_to back_or_index
+        end
+      end
+    end
+
     member :make_active do
       link_icon 'icon-volume-up'
       visible do
@@ -62,6 +81,12 @@ RailsAdmin.config do |config|
 
     edit do
       configure :description, :froala
+    end
+  end
+
+  config.model Transaction do
+    list do
+      scopes [:deposits_to_confirm, :all]
     end
   end
 end

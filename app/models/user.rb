@@ -32,7 +32,17 @@ class User < ActiveRecord::Base
   end
 
   def balance
-    transactions.sum(:amount)
+    transactions.reduce(0) do |sum, transaction|
+      if transaction.deposit?
+        if transaction.confirmed?
+          sum + transaction.amount
+        else
+          sum
+        end
+      else
+        sum + transaction.amount
+      end
+    end
   end
 
   def balance_info

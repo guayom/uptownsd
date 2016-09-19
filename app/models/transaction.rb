@@ -5,6 +5,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :bet
 
   scope :lost, -> { make_bet.joins(:bet).where(bets: { status: 2 }) }
+  scope :deposits_to_confirm, -> { deposit.where('confirmed IS NULL OR confirmed IS FALSE') }
 
   validates_presence_of :user
   validates_presence_of :kind
@@ -12,7 +13,6 @@ class Transaction < ActiveRecord::Base
   validates_numericality_of :amount
 
   def neteller
-    # fail '123'
     user.neteller
   end
 end

@@ -50,7 +50,10 @@
     - current_user.transactions.order(created_at: :desc).each do |t|
       %tr
         %td
-          = l(t.created_at)
+          - if t.deposit? && !t.confirmed?
+            Not confirmed
+          - else
+            = l(t.created_at)
         %td
           = t.kind.humanize
         %td
