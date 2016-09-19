@@ -42,14 +42,18 @@ class GameLine < ActiveRecord::Base
     end
 
     list do
-      field :game_info
+      filters [:time, :game_info]
+
+      field :time
+      field :game_info do
+        searchable [{sport: :title}]
+      end
       field :teams_info
       field :odds_info
       field :bets_info
       field :active do
         column_width 60
       end
-      field :updated_at
     end
 
     edit do

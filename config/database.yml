@@ -27,8 +27,8 @@ default: &default
 development:
   <<: *default
   database: uptown_development
-  username: uptown
-  password: 'Fa58gOn*PP5h*&G'
+  username: postgres
+  password: postgres
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
