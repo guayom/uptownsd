@@ -10,4 +10,9 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :kind
   validates_presence_of :amount
   validates_numericality_of :amount
+
+  def neteller
+    # fail '123'
+    user.neteller
+  end
 end

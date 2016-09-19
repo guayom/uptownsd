@@ -16,7 +16,7 @@
             <div class="carousel-caption">
                <%= "<h2>#{slide.title}</h2>".html_safe unless slide.title.empty? %>
                <%= "<h3>#{slide.description}</h3>".html_safe unless slide.description.empty? %>
-               <% unless slide.link.empty? && slide.slide_text.empty? %>
+               <% if slide.link.present? && slide.slide_text.present? %>
                  <a href="<%= slide.link %>" class="btn btn-primary"><%= slide.slide_text %></a>
                <% end %>
             </div>

@@ -4,6 +4,10 @@ class TransactionsController < ApplicationController
   def create
     if @transaction.get_the_win?
       @transaction.amount = - @transaction.amount.abs
+    else
+      if params[:transaction][:neteller].present?
+        current_user.update_attributes!(neteller: params[:transaction][:neteller])
+      end
     end
 
     @transaction.save
