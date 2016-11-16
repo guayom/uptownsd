@@ -2,8 +2,4 @@
 
 <h1>All Game Lines</h1>
 
-<%= render partial: "game_line", collection: @game_lines %>
-
-<br>
-
-<%= link_to 'New Game', new_game_line_path %>
+<%= render @game_lines %>

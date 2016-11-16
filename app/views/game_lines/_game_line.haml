@@ -1,4 +1,4 @@
-%article.gamelie-section.row{role: 'article'}
+%article.gameline-section.row{role: 'article'}
   .gameline-info
     %table.table.game-line-table
       %thead
@@ -6,45 +6,47 @@
           %time.time
             %i.fa.fa-clock-o
               = game_line.formatted_time
-        %th Spread
-        %th{:colspan => 2} Total
-        %th Moneyline
-        %th Place your bet
+        %th.text-center{colspan: 2} Spread
+        %th.text-center{colspan: 2} Total
+        %th.text-center Moneyline
+        -#%th Place your bet
       %tbody
         %tr
           %td
             %h3.lines-team{role: 'heading'}
               = game_line.team1.name
-          %td
-            %span.odds
-              = "#{game_line.spread_pts_team_1} #{game_line.spread_val_team_1}"
-          %td.over_under_total{:rowspan => 2, :valign => "bottom"}
+          %td.text-right.odds
+            = with_sign(game_line.spread_pts_team_1)
+          %td.text-left.odds
+            = with_sign(game_line.spread_val_team_1)
+          %td.text-right.text-middle.odds{rowspan: 2}
             = "#{game_line.over_under_total} O/U"
-          %td
-            = game_line.over_under_val_team_1
-          %td
-            = game_line.money_line_team_1
-          %td
-            = link_to 'Bet on this team', '#',
-                      class: 'btn btn-sm btn-primary link_to_add_bet',
-                      data: { game_line: game_line.id,
-                              team: game_line.team1.id }
+          %td.text-left.odds
+            = with_sign(game_line.over_under_val_team_1)
+          %td.text-center.odds
+            = with_sign(game_line.money_line_team_1)
+          -#%td
+          -#  = link_to 'Bet on this team', '#',
+          -#            class: 'btn btn-sm btn-primary link_to_add_bet',
+          -#            data: { game_line: game_line.id,
+          -#                    team: game_line.team1.id }
         %tr
           %td
             %h3.lines-team{role: 'heading'}
               = game_line.team2.name
-          %td
-            %span.odds
-              = "#{game_line.spread_pts_team_2} #{game_line.spread_val_team_2}"
-          %td
-            = game_line.over_under_val_team_2
-          %td
-            = game_line.money_line_team_2
-          %td
-            = link_to 'Bet on this team', '#',
-                      class: 'btn btn-sm btn-primary link_to_add_bet',
-                      data: { game_line: game_line.id,
-                              team: game_line.team2.id }
+          %td.text-right.odds
+            = with_sign(game_line.spread_pts_team_2)
+          %td.text-left.odds
+            = with_sign(game_line.spread_val_team_2)
+          %td.text-left.odds
+            = with_sign(game_line.over_under_val_team_2)
+          %td.text-center.odds
+            = with_sign(game_line.money_line_team_2)
+          -#%td
+          -#  = link_to 'Bet on this team', '#',
+          -#            class: 'btn btn-sm btn-primary link_to_add_bet',
+          -#            data: { game_line: game_line.id,
+          -#                    team: game_line.team2.id }
 
   = render 'bets/form', bet: Bet.new(game_line_id: game_line.id, team_id: game_line.team1.id, risk: Bet::DEFAULT_RISK)
 
