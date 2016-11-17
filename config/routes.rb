@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :leagues
   resources :teams
   resources :game_lines, only: [:index, :show]
-  resources :bets, only: [:create, :update, :destroy]
+  # resources :bets, only: [:create, :update, :destroy]
+  resources :bets, only: [:new, :create]
   resources :transactions, only: [:create]
   resources :categories
   resources :promotions, only: [:show]

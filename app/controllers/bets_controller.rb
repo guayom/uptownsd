@@ -1,6 +1,13 @@
 class BetsController < ApplicationController
   load_and_authorize_resource
 
+  def new
+    respond_to do |format|
+      format.js
+    end
+    # fail @bet.inspect
+  end
+
   def create
     @bet.save
     respond_to do |format|
@@ -28,6 +35,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:game_line_id, :team_id, :risk)
+    params.require(:bet).permit(:game_line_id, :team_id, :kind)
   end
 end

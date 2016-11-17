@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919181123) do
+ActiveRecord::Schema.define(version: 20161117092309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160919181123) do
     t.integer  "status",       default: 1, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "kind"
   end
 
   add_index "bets", ["game_line_id"], name: "index_bets_on_game_line_id", using: :btree
@@ -84,6 +85,8 @@ ActiveRecord::Schema.define(version: 20160919181123) do
     t.integer  "over_under_val_team_2"
     t.integer  "money_line_team_1"
     t.integer  "money_line_team_2"
+    t.integer  "result_team_1"
+    t.integer  "result_team_2"
   end
 
   create_table "game_results", force: :cascade do |t|

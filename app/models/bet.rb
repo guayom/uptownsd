@@ -2,6 +2,7 @@ class Bet < ActiveRecord::Base
   DEFAULT_RISK = 10.00
 
   enum status: { draft: 0, active: 1, lost: 2, won: 3 }
+  enum kind: { moneyline: 1, spread: 2, total: 3, parlay: 4 }
 
   belongs_to :user
   belongs_to :game_line
@@ -10,6 +11,7 @@ class Bet < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
 
   validates_presence_of :user
+  validates_presence_of :kind
   validates_presence_of :game_line
   validates_presence_of :team
   validates_presence_of :risk
@@ -35,6 +37,22 @@ class Bet < ActiveRecord::Base
     game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
   end
 
+  def moneyline
+    game_line.team1 == team ? game_line.money_line_team_1 : game_line.money_line_team_2
+  end
+
+  def spread_points
+    game_line.team1 == team ? game_line.spread_pts_team_1 : game_line.spread_pts_team_2
+  end
+
+  def spread_value
+    game_line.team1 == team ? game_line.spread_val_team_1 : game_line.spread_val_team_2
+  end
+
+  def total_value
+    game_line.team1 == team ? game_line.over_under_val_team_1 : game_line.over_under_val_team_2
+  end
+
   def win
     return 0 unless odds.present?
 
@@ -53,5 +71,16 @@ class Bet < ActiveRecord::Base
 
   def to_s
     "#{team.name} (#{odds >= 0 ? '+' + odds.to_s : odds})"
+  end
+
+  def kind_description
+    case kind.to_sym
+    when :moneyline then
+      "moneyline #{moneyline}"
+    when :spread then
+      "spread #{spread_points} / #{spread_value}"
+    when :total then
+      "total #{game_line.over_under_total} O/U / #{total_value}"
+    end
   end
 end

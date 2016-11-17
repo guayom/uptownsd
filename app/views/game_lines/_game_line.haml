@@ -6,25 +6,41 @@
           %time.time
             %i.fa.fa-clock-o
               = game_line.formatted_time
+        %th.text-center Moneyline
         %th.text-center{colspan: 2} Spread
         %th.text-center{colspan: 2} Total
-        %th.text-center Moneyline
         -#%th Place your bet
       %tbody
         %tr
           %td
             %h3.lines-team{role: 'heading'}
               = game_line.team1.name
+          %td.text-center.odds
+            = link_to with_sign(game_line.money_line_team_1),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team1.id,
+                                          kind: :moneyline }),
+                      remote: true
           %td.text-right.odds
-            = with_sign(game_line.spread_pts_team_1)
+            = link_to with_sign(game_line.spread_pts_team_1),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team1.id,
+                                          kind: :spread }),
+                      remote: true
           %td.text-left.odds
-            = with_sign(game_line.spread_val_team_1)
+            = link_to with_sign(game_line.spread_val_team_1),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team1.id,
+                                          kind: :spread }),
+                      remote: true
           %td.text-right.text-middle.odds{rowspan: 2}
             = "#{game_line.over_under_total} O/U"
           %td.text-left.odds
-            = with_sign(game_line.over_under_val_team_1)
-          %td.text-center.odds
-            = with_sign(game_line.money_line_team_1)
+            = link_to with_sign(game_line.over_under_val_team_1),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team1.id,
+                                          kind: :total }),
+                      remote: true
           -#%td
           -#  = link_to 'Bet on this team', '#',
           -#            class: 'btn btn-sm btn-primary link_to_add_bet',
@@ -34,20 +50,38 @@
           %td
             %h3.lines-team{role: 'heading'}
               = game_line.team2.name
-          %td.text-right.odds
-            = with_sign(game_line.spread_pts_team_2)
-          %td.text-left.odds
-            = with_sign(game_line.spread_val_team_2)
-          %td.text-left.odds
-            = with_sign(game_line.over_under_val_team_2)
           %td.text-center.odds
-            = with_sign(game_line.money_line_team_2)
+            = link_to with_sign(game_line.money_line_team_2),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team2.id,
+                                          kind: :moneyline }),
+                      remote: true
+          %td.text-right.odds
+            = link_to with_sign(game_line.spread_pts_team_2),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team2.id,
+                                          kind: :spread }),
+                      remote: true
+          %td.text-left.odds
+            = link_to with_sign(game_line.spread_val_team_2),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team2.id,
+                                          kind: :spread }),
+                      remote: true
+          %td.text-left.odds
+            = link_to with_sign(game_line.over_under_val_team_2),
+                      new_bet_path(bet: { game_line_id: game_line.id,
+                                          team_id: game_line.team2.id,
+                                          kind: :total }),
+                      remote: true
           -#%td
           -#  = link_to 'Bet on this team', '#',
           -#            class: 'btn btn-sm btn-primary link_to_add_bet',
           -#            data: { game_line: game_line.id,
           -#                    team: game_line.team2.id }
 
-  = render 'bets/form', bet: Bet.new(game_line_id: game_line.id, team_id: game_line.team1.id, risk: Bet::DEFAULT_RISK)
+  .gameline-add-bet{'data-gameline-id': game_line.id}
 
-  = render 'bets/form', bet: Bet.new(game_line_id: game_line.id, team_id: game_line.team2.id, risk: Bet::DEFAULT_RISK)
+  -#= render 'bets/form', bet: Bet.new(game_line_id: game_line.id, team_id: game_line.team1.id, risk: Bet::DEFAULT_RISK)
+
+  -#= render 'bets/form', bet: Bet.new(game_line_id: game_line.id, team_id: game_line.team2.id, risk: Bet::DEFAULT_RISK)
