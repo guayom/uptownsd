@@ -81,6 +81,8 @@ class Bet < ActiveRecord::Base
       "spread #{spread_points} / #{spread_value}"
     when :total then
       "total #{game_line.over_under_total} O/U / #{total_value}"
+    when :parlay then
+      'parlay'
     end
   end
 end
