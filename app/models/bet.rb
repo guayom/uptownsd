@@ -8,6 +8,8 @@ class Bet < ActiveRecord::Base
   belongs_to :game_line
   belongs_to :team
 
+  belongs_to :parlay, class_name: 'Bet'
+
   has_many :transactions, dependent: :destroy
 
   validates_presence_of :user

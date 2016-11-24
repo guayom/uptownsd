@@ -69,6 +69,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rails-erd'
   gem 'traceroute'
+  gem 'rb-readline'
 end
 
 group :production do
