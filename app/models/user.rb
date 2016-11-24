@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bets, -> { where('kind != ?', Bet.kinds[:straight]).order(created_at: :desc) }
-  has_many :straight_bets, -> { straight.order(created_at: :desc) },
+  has_many :straight_bets, -> { straight.where(parlay: nil).order(created_at: :desc) },
            class_name: 'Bet'
   has_many :transactions
 

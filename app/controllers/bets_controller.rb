@@ -34,6 +34,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:game_line_id, :team_id, :kind)
+    params.require(:bet).permit(:game_line_id, :team_id, :kind, :risk)
   end
 end

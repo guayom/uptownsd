@@ -14,8 +14,8 @@ class Bet < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :kind
-  validates_presence_of :game_line
-  validates_presence_of :team
+  validates_presence_of :game_line, unless: :parlay?
+  validates_presence_of :team, unless: :parlay?
   validates_presence_of :risk, unless: :straight?
   validates_numericality_of :risk, greater_than_or_equal_to: 5, less_than_or_equal_to: 200, unless: :straight?
 
@@ -30,6 +30,13 @@ class Bet < ActiveRecord::Base
   scope :archived, -> { where(status: [:lost, :won]) }
 
   after_create do
+    if self.parlay?
+      self.user.straight_bets.active.where(parlay: nil).each do |b|
+        b.parlay_id = self.id
+        b.save!
+      end
+    end
+
     unless self.straight?
       t = self.user.transactions.build
       t.kind = :make_bet
@@ -40,7 +47,11 @@ class Bet < ActiveRecord::Base
   end
 
   def odds
-    game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
+    if parlay?
+
+    else
+      game_line.team1 == team ? game_line.team1_odds : game_line.team2_odds
+    end
   end
 
   def moneyline

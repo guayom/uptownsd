@@ -1,0 +1,22 @@
+= form_for bet, remote: true do |f|
+  = f.hidden_field :kind, value: :parlay
+
+  .row{style: 'margin-bottom: 10px;'}
+    .col-sm-12
+      = f.label :risk, 'my risk'
+      = f.number_field :risk,
+                       step: 0.01, class: 'col-sm-12 bet-risk',
+                       data: { odds: bet.odds },
+                       required: true
+  .row
+    .col-sm-12
+      = f.submit "That's right, place the bet",
+                 class: 'btn btn-success bet-add',
+                 style: 'margin: 10px auto;'
+
+  .row
+    .col-sm-12
+      = link_to bets_user_path(id: current_user.id),
+                class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do
+        Clear parlay
+

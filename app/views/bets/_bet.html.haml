@@ -2,16 +2,22 @@
   %header.col-lg-12.event-header
     %h2.col-xs-10
       %span.event-team
-        = bet.team.name
+        - if bet.parlay?
+          Parlay
+        - else
+          = bet.team.name
       %br
       %span.bet-price
         = bet.odds
   .col-lg-12.event-body
-    %p.col-lg-12.league-time
-      %span.pull-left
-        = bet.game_line.league.abbreviation
-      %time.pull-right
-        = l(bet.game_line.time)
+    - if bet.parlay?
+      parlay content...
+    - else
+      %p.col-lg-12.league-time
+        %span.pull-left
+          = bet.game_line.league.abbreviation
+        %time.pull-right
+          = l(bet.game_line.time)
   %footer.col-lg-12.event-footer
     = form_for bet, remote: true do |f|
       %figure.col-lg-6.col-sm-12

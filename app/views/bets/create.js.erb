@@ -4,4 +4,8 @@
   hideBetForm(<%= @bet.game_line_id %>, <%= @bet.team_id %>);
   $('#bets').html('<%=j render 'bets/sidebar' %>');
   initBets();
+
+  <%# if @bet.parlay? %>
+//    $('.parlay-bets').hide();
+  <%# end %>
 <% end %>

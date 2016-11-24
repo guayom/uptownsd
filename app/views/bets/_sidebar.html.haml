@@ -1,35 +1,37 @@
 - if current_user.try(:has_any_active_bets?)
   %aside#bet-slip.build-bet-view
     - if current_user.try(:has_active_straight_bets?)
-      %header.col-lg-12.betslip-mainheader
-        %h2.col-lg-12.betslip-title
-          %span.betslip-title
-            Make parlay bet
+      .parlay-bets
+        %header.col-lg-12.betslip-mainheader
+          %h2.col-lg-12.betslip-title
+            %span.betslip-title
+              Make parlay bet
 
-      = render collection: current_user.straight_bets.active, partial: 'bets/straight_bet'
+        = render collection: current_user.straight_bets.active, partial: 'bets/straight_bet'
 
-      %footer.col-lg-12.betslip-footer
-        %figure.col-lg-12.footer-header
-          %h2.bets-selected.pull-left
-            %span
-              = pluralize(current_user.bets.active.count, 'Bet')
+        %footer.col-lg-12.betslip-footer
+          %figure.col-lg-12.footer-header
+            %h2.bets-selected.pull-left
+              %span
+                Combine
+                = pluralize(current_user.straight_bets.active.count, 'straight bet')
 
-        %dl.col-lg-12.selected-list
-          %dt.col-lg-6
-            Total risk
-          %dt.col-lg-6
-            = number_to_currency(current_user.bets.active.map(&:risk).sum)
-          %dt.col-lg-6
-            Total payout
-          %dt.col-lg-6
-            = number_to_currency(current_user.bets.active.map(&:payout).sum)
+          %br
 
-        = link_to bets_user_path(id: current_user.id),
-                  class: 'cta-button btn btn-danger col-lg-12' do
-          Review bets
+          = render partial: 'bets/parlay_form', locals: { bet: current_user.bets.build(kind: :parlay) }
+
+          -#%dl.col-lg-12.selected-list
+          -#  %dt.col-lg-6
+          -#    Total risk
+          -#  %dt.col-lg-6
+          -#    = number_to_currency(current_user.bets.active.map(&:risk).sum)
+          -#  %dt.col-lg-6
+          -#    Total payout
+          -#  %dt.col-lg-6
+          -#    = number_to_currency(current_user.bets.active.map(&:payout).sum)
 
     - if current_user.try(:has_active_bets?)
-      %header.col-lg-12.betslip-mainheader
+      %header.col-lg-12.betslip-mainheader{style: 'border-top: 5px solid rgb(34, 34, 34);'}
         %h2.col-lg-12.betslip-title
           %span.betslip-title
             Active bets
