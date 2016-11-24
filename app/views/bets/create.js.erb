@@ -1,7 +1,10 @@
 <% if @bet.invalid? %>
   alert('<%= @bet.errors.full_messages.join('. ') %>');
 <% else %>
-  hideBetForm(<%= @bet.game_line_id %>, <%= @bet.team_id %>);
+  <% unless @bet.parlay? %>
+    hideBetForm(<%= @bet.game_line_id %>, <%= @bet.team_id %>);
+  <% end %>
+
   $('#bets').html('<%=j render 'bets/sidebar' %>');
   initBets();
 

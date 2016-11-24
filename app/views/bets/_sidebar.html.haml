@@ -50,7 +50,7 @@
           %dt.col-lg-6
             = number_to_currency(current_user.bets.active.map(&:risk).sum)
           %dt.col-lg-6
-            Total payout
+            Total possible payout
           %dt.col-lg-6
             = number_to_currency(current_user.bets.active.map(&:payout).sum)
 
