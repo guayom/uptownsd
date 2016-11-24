@@ -11,16 +11,18 @@
   = form_for @bet, remote: true do |f|
     = f.hidden_field :game_line_id
     = f.hidden_field :team_id
+    = f.hidden_field :kind
 
-    .row{style: 'margin-bottom: 10px;'}
-      .col-sm-12.col-md-6
-        = f.label :risk, 'My risk'
-        = f.number_field :risk,
-                         step: 0.01, class: 'col-sm-12 bet-risk',
-                         data: { odds: @bet.odds,
-                                 game_line: @bet.game_line_id,
-                                 team: @bet.team_id },
-                         required: true
+    - unless @bet.straight?
+      .row{style: 'margin-bottom: 10px;'}
+        .col-sm-12.col-md-6
+          = f.label :risk, 'My risk'
+          = f.number_field :risk,
+                           step: 0.01, class: 'col-sm-12 bet-risk',
+                           data: { odds: @bet.odds,
+                                   game_line: @bet.game_line_id,
+                                   team: @bet.team_id },
+                           required: true
 
       .col-sm-12.col-md-6
 

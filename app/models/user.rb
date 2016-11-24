@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :bets, -> { order(created_at: :desc) }
+  has_many :bets, -> { where('kind != ?', Bet.kinds[:straight]).order(created_at: :desc) }
+  has_many :straight_bets, -> { straight.order(created_at: :desc) },
+           class_name: 'Bet'
   has_many :transactions
 
   rails_admin do
@@ -29,6 +31,14 @@ class User < ActiveRecord::Base
 
   def has_active_bets?
     bets.active.any?
+  end
+
+  def has_active_straight_bets?
+    straight_bets.active.any?
+  end
+
+  def has_any_active_bets?
+    has_active_bets? || has_active_straight_bets?
   end
 
   def balance

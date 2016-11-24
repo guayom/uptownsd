@@ -5,7 +5,6 @@ class BetsController < ApplicationController
     respond_to do |format|
       format.js
     end
-    # fail @bet.inspect
   end
 
   def create

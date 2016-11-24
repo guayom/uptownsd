@@ -1,0 +1,32 @@
+%section.col-lg-12.event-bet
+  %header.col-lg-12.event-header
+    %h2.col-xs-10
+      %span.event-team
+        = straight_bet.team.name
+      %br
+      %span.bet-price
+        = straight_bet.odds
+  .col-lg-12.event-body
+    %p.col-lg-12.league-time
+      %span.pull-left
+        = straight_bet.game_line.league.abbreviation
+      %time.pull-right
+        = l(straight_bet.game_line.time)
+  %footer.col-lg-12.event-footer
+    -#= form_for straight_bet, remote: true do |f|
+    -#  %figure.col-lg-6.col-sm-12
+    -#    %label
+    -#      Risk
+    -#    %p.form-control-static
+    -#      = 0
+    -#  %figure.col-lg-6.col-sm-12
+    -#    %label
+    -#      Payout
+    -#    %p.form-control-static
+    -#      = 0
+    -#
+    -#  = f.submit 'Update my risk',
+    -#             class: 'cta-button btn btn-success col-lg-12 bet-update',
+    -#             style: 'display: none;',
+    -#             data: { bet: straight_bet.id, risk: straight_bet.risk }
+  .clearfix

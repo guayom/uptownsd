@@ -2,7 +2,7 @@ class Bet < ActiveRecord::Base
   DEFAULT_RISK = 10.00
 
   enum status: { draft: 0, active: 1, lost: 2, won: 3 }
-  enum kind: { moneyline: 1, spread: 2, total: 3, parlay: 4 }
+  enum kind: { moneyline: 1, spread: 2, total: 3, straight: 4, parlay: 5 }
 
   belongs_to :user
   belongs_to :game_line
@@ -14,23 +14,27 @@ class Bet < ActiveRecord::Base
   validates_presence_of :kind
   validates_presence_of :game_line
   validates_presence_of :team
-  validates_presence_of :risk
-  validates_numericality_of :risk, greater_than_or_equal_to: 5, less_than_or_equal_to: 200
+  validates_presence_of :risk, unless: :straight?
+  validates_numericality_of :risk, greater_than_or_equal_to: 5, less_than_or_equal_to: 200, unless: :straight?
 
   validate on: :create do |bet|
-    if bet.risk > user.balance
-      errors.add(:risk, 'cannot be bigger than current balance.')
+    unless bet.straight?
+      if bet.risk > user.balance
+        errors.add(:risk, 'cannot be bigger than current balance.')
+      end
     end
   end
 
   scope :archived, -> { where(status: [:lost, :won]) }
 
   after_create do
-    t = self.user.transactions.build
-    t.kind = :make_bet
-    t.amount = -self.risk
-    t.bet = self
-    t.save!
+    unless self.straight?
+      t = self.user.transactions.build
+      t.kind = :make_bet
+      t.amount = -self.risk
+      t.bet = self
+      t.save!
+    end
   end
 
   def odds
@@ -81,7 +85,7 @@ class Bet < ActiveRecord::Base
       "spread #{spread_points} / #{spread_value}"
     when :total then
       "total #{game_line.over_under_total} O/U / #{total_value}"
-    when :parlay then
+    when :straight then
       'parlay'
     end
   end
