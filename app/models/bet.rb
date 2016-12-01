@@ -71,13 +71,25 @@ class Bet < ActiveRecord::Base
     game_line.team1 == team ? game_line.over_under_val_team_1 : game_line.over_under_val_team_2
   end
 
-  def win
-    return 0 unless odds.present?
+  def moneyline_win
+    if moneyline != 0
+      risk * (moneyline.abs / 100) ** (moneyline <=> 0)
+    else
+      0
+    end
+  end
 
-    win = if odds > 0
-            risk * (odds / 100.0)
-          else
-            risk / (-1.0 * odds / 100.0)
+  def win
+    # return 0 unless odds.present?
+    #
+    # win = if odds > 0
+    #         risk * (odds / 100.0)
+    #       else
+    #         risk / (-1.0 * odds / 100.0)
+    #       end
+
+    win = case self.kind
+          when :moneyline then moneyline_win
           end
 
     win.round(2)
