@@ -15,10 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+.DS_Store
 
 /public/system
-
-# Ignore application configuration
-/config/application.yml
-
-test.rb
