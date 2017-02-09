@@ -66,6 +66,8 @@ class GameLine < ActiveRecord::Base
         inline_edit false
       end
 
+      field :time
+
       field :team1
       field :spread_pts_team_1
       field :spread_val_team_1
